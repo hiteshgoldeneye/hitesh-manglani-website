@@ -1,8 +1,8 @@
 const blogPosts = [
   {
     title: "Powershell scripts to simplify JIT access – redirecting Dev to Tier2 environment",
-    category: "d365",
-    tag: "D365",
+    category: "d365-commerce",
+    tag: "D365-Commerce",
     date: "26 July 2026",
     excerpt:
       "A practical PowerShell approach to simplifying LCS-based JIT access and redirecting a D365 FinOps Dev environment to Tier 2.",
@@ -28,8 +28,8 @@ const blogPosts = [
   },
   {
     title: "Upselling – Info codes configuration recap",
-    category: "d365",
-    tag: "D365",
+    category: "d365-commerce",
+    tag: "D365-Commerce",
     date: "19 October 2020",
     excerpt:
       "A configuration-based recap of using Retail Info Codes to create upsell prompts without custom code.",
@@ -46,8 +46,8 @@ const blogPosts = [
   },
   {
     title: "Dyn365FO Excel Add-In Issues Troubleshooting",
-    category: "d365",
-    tag: "D365",
+    category: "d365-commerce",
+    tag: "D365-Commerce",
     date: "25 October 2019",
     excerpt:
       "A practical troubleshooting guide for resolving common issues with the Dynamics 365 Finance and Operations Excel Add-In.",
@@ -55,8 +55,8 @@ const blogPosts = [
   },
   {
     title: "General ledger parameters -> Ledger Accounting rules",
-    category: "d365",
-    tag: "D365",
+    category: "d365-commerce",
+    tag: "D365-Commerce",
     date: "16 July 2019",
     excerpt:
       "A concise explainer on how the summary account behavior in General Ledger parameters affects accounting outcomes.",
@@ -64,8 +64,8 @@ const blogPosts = [
   },
   {
     title: "Dynamics 365 for Retail Upgrade – Backward compatibility",
-    category: "d365",
-    tag: "D365",
+    category: "d365-commerce",
+    tag: "D365-Commerce",
     date: "05 May 2019",
     excerpt:
       "A real-world retail upgrade issue where MPOS compatibility broke between v7.1 and v10, and how it was resolved.",
@@ -73,8 +73,8 @@ const blogPosts = [
   },
   {
     title: "MPOS Build Error – App manifest validation error: The app manifest must be valid as per schema",
-    category: "d365",
-    tag: "D365",
+    category: "d365-commerce",
+    tag: "D365-Commerce",
     date: "01 February 2019",
     excerpt:
       "A Visual Studio and SDK troubleshooting post for MPOS build errors caused by missing deployment prerequisites.",
@@ -82,8 +82,8 @@ const blogPosts = [
   },
   {
     title: "MPOS Build Error: “10.0.10xxx.0” is not a supported value for TargetPlatformVersion…",
-    category: "d365",
-    tag: "D365",
+    category: "d365-commerce",
+    tag: "D365-Commerce",
     date: "21 December 2018",
     excerpt:
       "A quick fix for a Windows SDK version mismatch that prevented the MPOS solution from compiling.",
