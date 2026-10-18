@@ -155,6 +155,15 @@
           </div>
 
           <div id="blog-grid" class="card-grid blog-grid" aria-live="polite"></div>
+          <article id="blog-reader" class="blog-reader hidden" aria-live="polite" aria-labelledby="reader-title" tabindex="-1">
+            <button class="article-back" type="button" data-blog-back>← All insights</button>
+            <div class="reader-meta">
+              <span id="reader-date"></span>
+              <span id="reader-tag" class="tag"></span>
+            </div>
+            <h2 id="reader-title"></h2>
+            <div id="reader-body" class="reader-body"></div>
+          </article>
         </div>
       </section>
 
@@ -216,6 +225,6 @@
       </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=20261018"></script>
   </body>
 </html>
