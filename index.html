@@ -14,7 +14,11 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20261019-links" />
   </head>
   <body>
     <header class="site-header">
@@ -139,12 +143,18 @@
         </div>
       </section>
 
-      <section id="blog" class="section-spacing muted-section">
-        <div class="container">
-          <div class="section-heading split-heading">
-            <div>
-              <p class="section-tag">Insights</p>
-              <h2>Recent blog content.</h2>
+      <section id="blog" class="journal-section">
+        <div class="journal-masthead" role="img" aria-label="Landscape masthead for Dynamics Journal">
+          <div class="journal-masthead-panel">
+            <h2>DYNAMICS JOURNAL</h2>
+            <p>A blog on Dynamics 365 FinOps Commerce and associated tech</p>
+          </div>
+        </div>
+        <nav class="journal-navigation" aria-label="Dynamics Journal navigation">
+          <div class="journal-nav-inner">
+            <div class="journal-links">
+              <a href="#blog">Home</a>
+              <a href="#about">About</a>
             </div>
             <div class="filter-group" aria-label="Blog categories">
               <button class="filter-button active" data-filter="all" type="button">All</button>
@@ -153,10 +163,15 @@
               <button class="filter-button" data-filter="operations" type="button">Operations</button>
             </div>
           </div>
-
+        </nav>
+        <div class="journal-content">
+          <div class="journal-section-heading">
+            <p>From the archive</p>
+            <h2>Recent articles</h2>
+          </div>
           <div id="blog-grid" class="card-grid blog-grid" aria-live="polite"></div>
           <article id="blog-reader" class="blog-reader hidden" aria-live="polite" aria-labelledby="reader-title" tabindex="-1">
-            <button class="article-back" type="button" data-blog-back>← All insights</button>
+            <button class="article-back" type="button" data-blog-back>← All articles</button>
             <div class="reader-meta">
               <span id="reader-date"></span>
               <span id="reader-tag" class="tag"></span>
@@ -225,6 +240,6 @@
       </div>
     </footer>
 
-    <script src="script.js?v=20261018"></script>
+    <script src="script.js?v=20261019d"></script>
   </body>
 </html>
