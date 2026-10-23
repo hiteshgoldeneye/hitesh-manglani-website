@@ -215,6 +215,20 @@ const blogReader = document.getElementById("blog-reader");
 const blogSection = document.getElementById("blog");
 const filterButtons = document.querySelectorAll(".filter-button");
 const year = document.getElementById("year");
+let activeFilter = "all";
+
+const legacyPostRoutes = new Map([
+  ["powershell-scripts-to-simplify-ji-access-redirecting-dev-to-tier2-environment", "powershell-jit-tier2-redirect"],
+  ["resolving-operation-cant-be-performed-error-in-store-commerce", "store-commerce-customer-deposit-error"],
+  ["commerce-extensions-techtalks", "commerce-extensions-techtalks"],
+  ["upselling-info-codes-configuration-recap", "upselling-info-codes-configuration"],
+  ["purchase-order-status-changing-automatically", "purchase-order-status-changing"],
+  ["dyn365fo-excel-add-in-issues-troubleshooting", "dyn365fo-excel-add-in-troubleshooting"],
+  ["general-ledger-parameters-ledger-accounting-rules", "general-ledger-accounting-rules"],
+  ["dynamics-365-for-retail-upgrade-backward-compatibility", "dynamics-365-retail-upgrade-backward-compatibility"],
+  ["mpos-solution-build-error-app-manifest-validation-error-the-app-manifest-must-be-valid-as-per-schema", "mpos-app-manifest-validation-error"],
+  ["mpos-build-error-10-0-10xxx-0-is-not-a-supported-value-for-targetplatformversion", "mpos-target-platform-version-error"],
+]);
 
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, (character) => ({
@@ -226,7 +240,92 @@ function escapeHtml(value) {
   })[character]);
 }
 
-function renderContentBlock(block) {
+function decodeHtml(value) {
+  const documentFragment = new DOMParser().parseFromString(String(value), "text/html");
+  return documentFragment.body.textContent || "";
+}
+
+function mapLegacyArticleUrl(value) {
+  let url;
+  try {
+    url = new URL(value, "https://hiteshgoldeneye.com");
+  } catch {
+    return null;
+  }
+
+  if (url.hostname !== "hiteshgoldeneye.com" && url.hostname !== "www.hiteshgoldeneye.com") {
+    return null;
+  }
+
+  const legacySlug = decodeURIComponent(url.pathname.replace(/^\/+|\/+$/g, ""));
+  const localSlug = legacyPostRoutes.get(legacySlug);
+  return localSlug ? `#post/${localSlug}` : null;
+}
+
+function sanitizeLegacyHtml(html, mediaMap = {}) {
+  const parsed = new DOMParser().parseFromString(html, "text/html");
+  const allowedTags = new Set([
+    "a", "b", "blockquote", "br", "caption", "code", "div", "em", "figcaption",
+    "figure", "h2", "h3", "h4", "hr", "i", "img", "li", "ol", "p", "pre",
+    "span", "strong", "table", "tbody", "td", "th", "thead", "tr", "u", "ul",
+  ]);
+  const droppedTags = new Set(["script", "style", "iframe", "object", "embed", "form", "input", "button"]);
+
+  function localizeMediaUrl(value) {
+    let url;
+    try {
+      url = new URL(value, location.origin);
+    } catch {
+      return value;
+    }
+
+    const marker = "/wp-content/uploads/";
+    const markerIndex = url.pathname.indexOf(marker);
+    if (markerIndex < 0) return value;
+
+    const uploadPath = decodeURIComponent(url.pathname.slice(markerIndex + marker.length));
+    return mediaMap[uploadPath] || value;
+  }
+
+  function serialize(node) {
+    if (node.nodeType === 3) return escapeHtml(node.nodeValue);
+    if (node.nodeType !== 1) return "";
+
+    const tag = node.tagName.toLowerCase();
+    if (droppedTags.has(tag)) return "";
+
+    if (tag === "img") {
+      const source = localizeMediaUrl(node.getAttribute("src") || "");
+      if (!/^https?:\/\//i.test(source) && !/^assets\//.test(source)) return "";
+      return `<img src="${escapeHtml(source)}" alt="${escapeHtml(node.getAttribute("alt") || "")}" loading="lazy">`;
+    }
+
+    const children = Array.from(node.childNodes, serialize).join("");
+    if (!allowedTags.has(tag)) return children;
+
+    if (tag === "a") {
+      const rawHref = node.getAttribute("href") || "";
+      const localHref = mapLegacyArticleUrl(rawHref);
+      if (localHref) return `<a href="${escapeHtml(localHref)}">${children}</a>`;
+
+      const href = localizeMediaUrl(rawHref);
+      if (!/^https?:\/\//i.test(href) && !/^assets\//.test(href) && !href.startsWith("#")) return children;
+      const external = /^https?:\/\//i.test(href) && !href.startsWith(location.origin);
+      return `<a href="${escapeHtml(href)}"${external ? ' target="_blank" rel="noopener noreferrer"' : ""}>${children}</a>`;
+    }
+
+    if (tag === "br" || tag === "hr") return `<${tag}>`;
+    return `<${tag}>${children}</${tag}>`;
+  }
+
+  return Array.from(parsed.body.childNodes, serialize).join("");
+}
+
+function renderContentBlock(block, post) {
+  if (block.type === "html") {
+    return sanitizeLegacyHtml(block.html, post.mediaMap);
+  }
+
   if (block.type === "p") {
     return `<p>${escapeHtml(block.text).replace(/\n/g, "<br>")}</p>`;
   }
@@ -291,7 +390,7 @@ function showPost(post, updateUrl = true) {
   document.getElementById("reader-date").textContent = post.date;
   document.getElementById("reader-tag").textContent = post.tag;
   document.getElementById("reader-title").textContent = post.title;
-  document.getElementById("reader-body").innerHTML = post.content.map(renderContentBlock).join("");
+  document.getElementById("reader-body").innerHTML = post.content.map((block) => renderContentBlock(block, post)).join("");
 
   if (updateUrl) {
     history.pushState(null, "", `#post/${post.slug}`);
@@ -336,7 +435,8 @@ blogReader.querySelector("[data-blog-back]").addEventListener("click", () => {
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
     filterButtons.forEach((btn) => btn.classList.toggle("active", btn === button));
-    renderPosts(button.dataset.filter);
+    activeFilter = button.dataset.filter;
+    renderPosts(activeFilter);
   });
 });
 
@@ -348,3 +448,37 @@ renderPosts();
 window.addEventListener("popstate", syncPostFromUrl);
 window.addEventListener("hashchange", syncPostFromUrl);
 syncPostFromUrl();
+
+fetch("assets/blog/archive.json?v=20261023")
+  .then((response) => {
+    if (!response.ok) throw new Error("Could not load the archived articles");
+    return response.json();
+  })
+  .then(({ posts }) => {
+    const knownSlugs = new Set(blogPosts.map((post) => post.slug));
+
+    posts.forEach((post) => {
+      legacyPostRoutes.set(post.legacySlug || post.slug, post.slug);
+      if (knownSlugs.has(post.slug)) return;
+
+      const excerptText = decodeHtml(post.excerptHtml).replace(/\s+/g, " ").trim();
+      const bodyText = decodeHtml(post.contentHtml).replace(/\s+/g, " ").trim();
+      blogPosts.push({
+        slug: post.slug,
+        title: decodeHtml(post.title),
+        category: post.category,
+        tag: post.tag,
+        date: post.date,
+        excerpt: excerptText || bodyText.slice(0, 220) || "This original archive entry has no saved article body.",
+        mediaMap: post.mediaMap,
+        content: [{
+          type: "html",
+          html: post.contentHtml || "<p>The original WordPress entry has no saved body text.</p>",
+        }],
+      });
+    });
+
+    renderPosts(activeFilter);
+    syncPostFromUrl();
+  })
+  .catch((error) => console.error(error));
