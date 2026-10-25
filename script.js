@@ -449,7 +449,7 @@ window.addEventListener("popstate", syncPostFromUrl);
 window.addEventListener("hashchange", syncPostFromUrl);
 syncPostFromUrl();
 
-fetch("assets/blog/archive.json?v=20261023")
+fetch("assets/blog/archive.json?v=20261025")
   .then((response) => {
     if (!response.ok) throw new Error("Could not load the archived articles");
     return response.json();
