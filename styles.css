@@ -664,6 +664,20 @@ h2 {
   margin-bottom: 0.5rem;
 }
 
+.reader-code {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 1.25rem 0 1.5rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid #dedfdb;
+  background: #f2f3f0;
+  color: #263238;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  white-space: pre;
+}
+
 .architecture-diagram {
   margin: 1.8rem 0 2rem;
   padding: 1rem;

@@ -20,6 +20,8 @@ const blogPosts = [
       { type: "heading", text: "A request from click to database" },
       { type: "p", text: "When a user selects Place Order, the interface should express that intent rather than connect directly to SQL Server or implement every business rule." },
       { type: "diagram", name: "request" },
+      { type: "p", text: "For example, the client can send the product and requested quantity. It should not be trusted to supply the final price or the identity of the signed-in customer." },
+      { type: "code", language: "json", text: "{\n  \"productId\": 5001,\n  \"quantity\": 2\n}" },
       { type: "list", items: [
         "The UI sends a request, commonly over HTTPS, to an API or controller.",
         "The receiving application deserializes the payload into a request object and validates its shape.",
@@ -28,27 +30,36 @@ const blogPosts = [
         "A repository or other data-access component reads and writes the required records.",
         "The application builds a response, serializes it for transport, and the UI displays the result.",
       ] },
+      { type: "p", text: "After the server validates the request, checks stock, calculates the total, and saves the order, it can return a result such as:" },
+      { type: "code", language: "json", text: "{\n  \"orderId\": 12345,\n  \"status\": \"Confirmed\",\n  \"total\": 1999.00\n}" },
+      { type: "p", text: "The UI uses the response to show confirmation. It does not need to know which repository, database, or pricing implementation produced it." },
       { type: "heading", text: "Serialization, DTOs, and contracts" },
       { type: "p", text: "Serialization turns an in-memory object into a representation that can cross a process, network, or storage boundary. For an HTTP API, an OrderRequest might be serialized as JSON, sent over HTTPS, and deserialized by the server into a request DTO. The response follows the reverse path: the server creates a response DTO, serializes it, and the client deserializes it. A normal method call between classes in the same process does not by itself require serialization." },
       { type: "diagram", name: "serialization" },
-      { type: "p", text: "A Data Transfer Object (DTO) is designed for a boundary. For example, a CreateOrderRequest might expose only productId and quantity. It should not automatically be the database entity: entities can contain internal state, persistence details, password hashes, or security fields that clients must not receive or control." },
+      { type: "p", text: "A Data Transfer Object (DTO) is designed for a boundary. For example, a CreateOrderRequest might expose only productId and quantity. It should not automatically be the database entity: entities can contain internal state, persistence details, password hashes, or security fields that clients must not receive or control. Map the validated DTO into the application or domain model instead of binding an incoming payload directly to a database entity." },
       { type: "p", text: "The API contract is the agreement between client and server: field names, data types, required and optional values, response shape, error format, and version behavior. Both sides need to interpret those fields the same way. Schema validation catches malformed payloads; business validation then checks meaning, such as whether the quantity is positive and the requested product is available." },
       { type: "p", text: "Contract changes can break independent clients. Adding an optional field is often compatible, while renaming or removing a field can break older applications. Use explicit API versions or a planned compatibility policy, and keep error responses stable enough for clients to handle." },
       { type: "p", text: "Serialization formats are implementation choices at the boundary: JSON is common for REST APIs, XML appears in some SOAP services, and Protocol Buffers are often used with gRPC. Choose a format and schema that clients can consume reliably; do not expose a database model just because it is convenient to serialize." },
       { type: "heading", text: "Where validation and security belong" },
       { type: "p", text: "Client-side validation improves usability—for example, requiring a quantity or checking that it is positive—but it is not a security boundary. A different client can call an API directly. The server must validate both input shape and business meaning, then enforce identity, permissions, and access to the specific resource." },
+      { type: "list", items: [
+        "Shape validation: productId is present, quantity is an integer, and the payload is within size limits.",
+        "Business validation: the product is active, stock is available, and the customer is eligible to place the order.",
+        "Authorization: the authenticated caller may order for this account and access the requested resource.",
+      ] },
       { type: "heading", text: "Errors, transactions, and connections" },
       { type: "p", text: "Handle failures at the boundary that can respond safely. Return a clear error code and message to the caller, while recording diagnostic details internally. Avoid exposing raw database exceptions, connection strings, stack traces, or sensitive information; do not silently swallow errors." },
-      { type: "p", text: "When order creation, order lines, and inventory updates must succeed or fail together, a database transaction can protect consistency. External payment systems may require a separate workflow, compensating actions, or a saga rather than one database transaction." },
+      { type: "p", text: "When order creation, order lines, and inventory reservation must succeed or fail together, a database transaction can protect consistency. A payment provider is outside that database transaction: avoid holding database locks while waiting on a network call. A workflow may instead record the order state, call the provider, and complete or compensate the order based on the result." },
+      { type: "p", text: "Retries add another consistency concern. If a client times out after the server creates an order, retrying the same request must not create or charge a duplicate order. An idempotency key or another deduplication mechanism lets the server recognize a repeated operation." },
       { type: "p", text: "Open database connections when needed, perform the work, then close or return them to a connection pool. Pooling helps efficiency, but applications still need sensible concurrency limits, timeouts, and handling for transient failures." },
       { type: "heading", text: "Dependency injection and repositories" },
       { type: "p", text: "Dependency injection supplies a service with the components it needs instead of having it construct concrete dependencies itself. A service can depend on a repository interface, making implementations easier to substitute and test. Use a repository when it creates a useful boundary; avoid adding generic layers automatically when the framework already provides an appropriate data-access abstraction." },
       { type: "heading", text: "Layers, tiers, and cross-cutting concerns" },
-      { type: "p", text: "A layer is a logical separation of responsibility. A tier usually describes a separately deployed or physical part of a system. They are related, but not interchangeable: three logical layers do not require three servers." },
+      { type: "p", text: "A layer is a logical separation of responsibility. A tier usually describes a separately deployed or physical part of a system. They are related, but not interchangeable: three logical layers do not require three servers. A small application can keep its UI/API and business modules in one deployable while storing data on a database server; the logical boundaries still matter even without three machines." },
       { type: "p", text: "Caching, asynchronous queues, logging, metrics, tracing, and configuration support the whole application rather than belonging to only one tier. Queues can help with long-running work, while adding concerns such as retries, duplicate delivery, ordering, and idempotency. Caches need deliberate expiry and invalidation rules, and observability must avoid recording secrets or sensitive customer data." },
       { type: "diagram", name: "cross-cutting" },
-      { type: "heading", text: "Applying the model to retail and D365 Commerce" },
-      { type: "p", text: "The same separation helps reason about retail and commerce flows: a POS or e-commerce client presents the workflow, application services coordinate business rules and integrations, and data-access components work with the appropriate stores. The exact deployment topology varies, but clear boundaries still make changes easier to test, secure, and support." },
+      { type: "heading", text: "When should a tier become a separate service?" },
+      { type: "p", text: "Start with clear module boundaries inside a deployable application. Split a tier into a separately deployed service when there is a concrete need such as independent scaling, a distinct security boundary, separate release ownership, or fault isolation. A network boundary also adds latency, monitoring, retries, versioned contracts, and new failure modes, so splitting tiers should solve a real operational or organizational need." },
       { type: "p", text: "When a boundary is explicit, each part can evolve with less coupling: the UI focuses on user experience, business services own business decisions, and data access handles persistence. That is the practical value of three-tier architecture." },
     ],
   },
@@ -381,6 +392,10 @@ function renderContentBlock(block, post) {
 
   if (block.type === "diagram") {
     return renderArchitectureDiagram(block.name);
+  }
+
+  if (block.type === "code") {
+    return `<pre class="reader-code"><code>${escapeHtml(block.text)}</code></pre>`;
   }
 
   if (block.type === "p") {
