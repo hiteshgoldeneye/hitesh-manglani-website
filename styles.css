@@ -664,6 +664,100 @@ h2 {
   margin-bottom: 0.5rem;
 }
 
+.architecture-diagram {
+  margin: 1.8rem 0 2rem;
+  padding: 1rem;
+  border: 1px solid #e2e2df;
+  background: #f7f8f6;
+}
+
+.diagram-flow {
+  display: grid;
+  align-items: stretch;
+}
+
+.diagram-flow--horizontal {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 0.45rem;
+}
+
+.diagram-flow--vertical {
+  max-width: 420px;
+  margin: 0 auto;
+  grid-template-columns: 1fr;
+  gap: 0.45rem;
+}
+
+.diagram-node {
+  min-width: 0;
+  padding: 0.8rem 0.7rem;
+  border: 1px solid #d7d9d6;
+  border-top: 3px solid #4e8fa1;
+  background: #fff;
+}
+
+.diagram-node--green {
+  border-top-color: #54846a;
+  background: #fbfdfb;
+}
+
+.diagram-node--gold {
+  border-top-color: #b98737;
+  background: #fffdf9;
+}
+
+.diagram-node > span {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #777;
+  font-family: "Raleway", sans-serif;
+  font-size: 0.61rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.diagram-node strong {
+  display: block;
+  color: #252525;
+  font-size: 0.94rem;
+  line-height: 1.2;
+}
+
+.diagram-node p {
+  margin: 0.35rem 0 0;
+  color: #555;
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+.diagram-arrow {
+  display: grid;
+  align-self: center;
+  color: #69736e;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.diagram-banner {
+  margin-bottom: 0.7rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #d6d9d4;
+  background: #eef1ed;
+  color: #34463a;
+  font-family: "Raleway", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.architecture-diagram figcaption {
+  margin-top: 0.7rem;
+  color: #757575;
+  font-size: 0.76rem;
+  line-height: 1.4;
+}
+
 .reader-body blockquote {
   margin: 1.5rem 0;
   padding: 0 0 0 1.1rem;
@@ -813,5 +907,17 @@ h2 {
 
   .blog-reader h2 {
     font-size: 2rem;
+  }
+
+  .diagram-flow--horizontal {
+    grid-template-columns: 1fr;
+  }
+
+  .diagram-flow--horizontal .diagram-arrow {
+    transform: rotate(90deg);
+  }
+
+  .diagram-node {
+    padding: 0.75rem 0.8rem;
   }
 }

@@ -15,9 +15,11 @@ const blogPosts = [
         "Business tier: application services apply rules such as order validation, pricing, inventory checks, discounts, tax, and process orchestration.",
         "Data tier: databases and data-access components persist and retrieve customers, products, inventory, orders, and related records.",
       ] },
+      { type: "diagram", name: "tiers" },
       { type: "p", text: "The boundary is about responsibility, not the number of folders, projects, or servers. A three-tier application may run in one process or be deployed across multiple machines and services." },
       { type: "heading", text: "A request from click to database" },
       { type: "p", text: "When a user selects Place Order, the interface should express that intent rather than connect directly to SQL Server or implement every business rule." },
+      { type: "diagram", name: "request" },
       { type: "list", items: [
         "The UI sends a request, commonly over HTTPS, to an API or controller.",
         "The receiving application deserializes the payload into a request object and validates its shape.",
@@ -41,6 +43,7 @@ const blogPosts = [
       { type: "heading", text: "Layers, tiers, and cross-cutting concerns" },
       { type: "p", text: "A layer is a logical separation of responsibility. A tier usually describes a separately deployed or physical part of a system. They are related, but not interchangeable: three logical layers do not require three servers." },
       { type: "p", text: "Caching, asynchronous queues, logging, metrics, tracing, and configuration support the whole application rather than belonging to only one tier. Queues can help with long-running work, while adding concerns such as retries, duplicate delivery, ordering, and idempotency. Caches need deliberate expiry and invalidation rules, and observability must avoid recording secrets or sensitive customer data." },
+      { type: "diagram", name: "cross-cutting" },
       { type: "heading", text: "Applying the model to retail and D365 Commerce" },
       { type: "p", text: "The same separation helps reason about retail and commerce flows: a POS or e-commerce client presents the workflow, application services coordinate business rules and integrations, and data-access components work with the appropriate stores. The exact deployment topology varies, but clear boundaries still make changes easier to test, secure, and support." },
       { type: "p", text: "When a boundary is explicit, each part can evolve with less coupling: the UI focuses on user experience, business services own business decisions, and data access handles persistence. That is the practical value of three-tier architecture." },
@@ -373,6 +376,10 @@ function renderContentBlock(block, post) {
     return sanitizeLegacyHtml(block.html, post.mediaMap);
   }
 
+  if (block.type === "diagram") {
+    return renderArchitectureDiagram(block.name);
+  }
+
   if (block.type === "p") {
     return `<p>${escapeHtml(block.text).replace(/\n/g, "<br>")}</p>`;
   }
@@ -403,6 +410,56 @@ function renderContentBlock(block, post) {
   }
 
   return "";
+}
+
+function renderArchitectureDiagram(name) {
+  const diagrams = {
+    tiers: {
+      title: "The three logical tiers",
+      caption: "Each tier has a distinct responsibility; deployment can still use fewer or more physical machines.",
+      orientation: "horizontal",
+      nodes: [
+        { eyebrow: "Tier 1", title: "Presentation", detail: "Web · Mobile · Desktop · POS", tone: "blue" },
+        { eyebrow: "Tier 2", title: "Business logic", detail: "Rules · Services · Orchestration", tone: "green" },
+        { eyebrow: "Tier 3", title: "Data", detail: "Repositories · Databases", tone: "gold" },
+      ],
+    },
+    request: {
+      title: "Order request and response path",
+      caption: "The response travels back up the same application boundaries after the order is processed.",
+      orientation: "vertical",
+      nodes: [
+        { eyebrow: "Intent", title: "User", detail: "Chooses product and quantity", tone: "blue" },
+        { eyebrow: "Tier 1", title: "UI", detail: "Collects input and presents results", tone: "blue" },
+        { eyebrow: "Boundary", title: "API / Controller", detail: "HTTPS · Deserialize · Validate", tone: "gold" },
+        { eyebrow: "Tier 2", title: "Business services", detail: "Authorize · Price · Check stock · Create order", tone: "green" },
+        { eyebrow: "Boundary", title: "Repository / Data access", detail: "Queries and persistence", tone: "gold" },
+        { eyebrow: "Tier 3", title: "Database", detail: "Orders · Products · Inventory", tone: "blue" },
+      ],
+    },
+    "cross-cutting": {
+      title: "Concerns that cross the tiers",
+      caption: "Apply these deliberately across boundaries rather than treating them as the responsibility of only one tier.",
+      orientation: "horizontal",
+      banner: "Security · Validation · Error handling · Logging · Metrics · Tracing · Configuration",
+      nodes: [
+        { eyebrow: "Tier 1", title: "Presentation", detail: "User experience", tone: "blue" },
+        { eyebrow: "Tier 2", title: "Business logic", detail: "Rules and workflows", tone: "green" },
+        { eyebrow: "Tier 3", title: "Data", detail: "Persistence", tone: "gold" },
+      ],
+    },
+  };
+  const diagram = diagrams[name];
+  if (!diagram) return "";
+
+  const nodes = diagram.nodes.map((node, index) => {
+    const separator = index === 0
+      ? ""
+      : `<span class="diagram-arrow" aria-hidden="true">${diagram.orientation === "vertical" ? "↓" : "→"}</span>`;
+    return `${separator}<div class="diagram-node diagram-node--${node.tone}"><span>${escapeHtml(node.eyebrow)}</span><strong>${escapeHtml(node.title)}</strong><p>${escapeHtml(node.detail)}</p></div>`;
+  }).join("");
+
+  return `<figure class="architecture-diagram architecture-diagram--${diagram.orientation}${diagram.banner ? " architecture-diagram--cross-cutting" : ""}" role="group" aria-label="${escapeHtml(diagram.title)}">${diagram.banner ? `<div class="diagram-banner">${escapeHtml(diagram.banner)}</div>` : ""}<div class="diagram-flow diagram-flow--${diagram.orientation}">${nodes}</div><figcaption>${escapeHtml(diagram.caption)}</figcaption></figure>`;
 }
 
 function renderPosts(filter = "all") {
