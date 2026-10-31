@@ -2,8 +2,8 @@ const blogPosts = [
   {
     slug: "understanding-three-tier-architecture",
     title: "Understanding 3-Tier Architecture: What Actually Happens Behind the Scenes?",
-    category: "strategy",
-    tag: "Strategy",
+    category: "architecture",
+    tag: "Architecture",
     date: "25 October 2026",
     excerpt:
       "Follow one order from a button click to a database row and back, and see where validation, security, transactions and retries belong, with a Dynamics 365 Commerce mapping.",
