@@ -1,7 +1,7 @@
 const blogPosts = [
   {
     slug: "understanding-three-tier-architecture",
-    title: "What Actually Happens When You Click \"Place Order\"? A Walkthrough of Three-Tier Architecture",
+    title: "Understanding 3-Tier Architecture: What Actually Happens Behind the Scenes?",
     category: "strategy",
     tag: "Strategy",
     date: "25 October 2026",
