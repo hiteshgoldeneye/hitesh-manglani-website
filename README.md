@@ -49,4 +49,6 @@ git push -u origin main
 
 ## Notes
 
+Each blog article is pre-rendered to a real URL (`/blog/<slug>/`) with its own title, description and Open Graph tags. After changing posts in `script.js` or `assets/blog/archive.json`, run `npm install` (once) and `npm run build`, then commit the regenerated `blog/`, `sitemap.xml` and `robots.txt`.
+
 The default contact email is set to `hello@hiteshmanglani.com`. Replace it with the correct email before publishing.

@@ -566,6 +566,7 @@ h2 {
   font-weight: 700;
   text-align: left;
   text-transform: uppercase;
+  text-decoration: none;
   cursor: pointer;
 }
 

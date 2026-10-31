@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamics 365 for Retail Upgrade – Backward compatibility | Hitesh Manglani</title>
+    <meta name="description" content="A real-world retail upgrade issue where MPOS compatibility broke between v7.1 and v10, and how it was resolved." />
+    <link rel="canonical" href="https://hiteshmanglani.com/blog/dynamics-365-retail-upgrade-backward-compatibility/" />
+    <meta property="og:site_name" content="Hitesh Manglani" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Dynamics 365 for Retail Upgrade – Backward compatibility | Hitesh Manglani" />
+    <meta property="og:description" content="A real-world retail upgrade issue where MPOS compatibility broke between v7.1 and v10, and how it was resolved." />
+    <meta property="og:url" content="https://hiteshmanglani.com/blog/dynamics-365-retail-upgrade-backward-compatibility/" />
+    <meta property="og:image" content="https://hiteshmanglani.com/assets/blog/header.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Dynamics 365 for Retail Upgrade – Backward compatibility | Hitesh Manglani" />
+    <meta name="twitter:description" content="A real-world retail upgrade issue where MPOS compatibility broke between v7.1 and v10, and how it was resolved." />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Dynamics 365 for Retail Upgrade – Backward compatibility","description":"A real-world retail upgrade issue where MPOS compatibility broke between v7.1 and v10, and how it was resolved.","author":{"@type":"Person","name":"Hitesh Manglani"},"mainEntityOfPage":"https://hiteshmanglani.com/blog/dynamics-365-retail-upgrade-backward-compatibility/","datePublished":"2019-05-05"}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="/" class="brand" aria-label="Hitesh Manglani home">
+          <span class="brand-mark">HM</span>
+          <span>Hitesh Manglani</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="/#about">About</a>
+          <a href="/#expertise">Expertise</a>
+          <a href="/blog/">Blog</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+        <a class="button button-small" href="/#contact">Request Resume</a>
+      </div>
+    </header>
+    <main>
+      <section class="journal-section">
+        <div class="journal-content">
+          <article class="blog-reader">
+            <a class="article-back" href="/blog/">← All articles</a>
+            <div class="reader-meta">
+              <time datetime="2019-05-05">05 May 2019</time>
+              <span class="tag">D365-Commerce</span>
+            </div>
+            <h2>Dynamics 365 for Retail Upgrade – Backward compatibility</h2>
+            <div class="reader-body"><p>Been a while since I last posted as I was busy with upgrading our implementation from v7.1 to v10. During our upgrade from Dynamics 365 for Retail v7.1 to v10.0, one of the main issue we faced is that of Backward compatibility.</p><p>The issue occurs when trying to run v7.1 MPOS with v10.0 Retail Server, basically “Declare Start Amount”feature does not work.</p><p>On trying to declare the start amount the cashier gets the following prompt.</p><figure><img src="/assets/blog/posts/2019-05-img_3420.jpg" alt="MPOS starting amount prompt" loading="lazy"></figure><p>On trying to key in any value, the start amount results as NAN.</p><figure><img src="/assets/blog/posts/2019-05-img_3421-e1559095656626.jpg" alt="Starting amount displayed as NaN" loading="lazy"></figure><p>Reattempting to declare the start amount simply repeats the above prompts. Now this issue is serious since it prevents the closing of shift as shown in the screenshot below.</p><figure><img src="/assets/blog/posts/2019-05-img_3422-e1559095756989.jpg" alt="Shift cannot be closed after the error" loading="lazy"></figure><p>My investigation started with debugging the MPOS code and eventually the CRT code, and I found that one of the fields “StartingAmount” had been removed from crt.ShiftsView. This was causing its value to stay as undefined.</p><p>The good news is that issue is reported to Microsoft, and we are currently awaiting the fix (currently expected in v10.0.4)</p><p>-Hitesh Manglani</p></div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© 2026 Hitesh Manglani. All rights reserved.</p>
+        <a href="/">Home</a>
+      </div>
+    </footer>
+  </body>
+</html>

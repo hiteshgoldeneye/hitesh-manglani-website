@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamics 365 for Operations and TLS 1.2 | Hitesh Manglani</title>
+    <meta name="description" content="In my first Dynamics 365 for Operations project we had to implement an integration between the Azure hosted Dynamics 365 for Operations Retail Server and an…" />
+    <link rel="canonical" href="https://hiteshmanglani.com/blog/dynamics-365-for-operations-and-tls-1-2/" />
+    <meta property="og:site_name" content="Hitesh Manglani" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Dynamics 365 for Operations and TLS 1.2 | Hitesh Manglani" />
+    <meta property="og:description" content="In my first Dynamics 365 for Operations project we had to implement an integration between the Azure hosted Dynamics 365 for Operations Retail Server and an…" />
+    <meta property="og:url" content="https://hiteshmanglani.com/blog/dynamics-365-for-operations-and-tls-1-2/" />
+    <meta property="og:image" content="https://hiteshmanglani.com/assets/blog/header.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Dynamics 365 for Operations and TLS 1.2 | Hitesh Manglani" />
+    <meta name="twitter:description" content="In my first Dynamics 365 for Operations project we had to implement an integration between the Azure hosted Dynamics 365 for Operations Retail Server and an…" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Dynamics 365 for Operations and TLS 1.2","description":"In my first Dynamics 365 for Operations project we had to implement an integration between the Azure hosted Dynamics 365 for Operations Retail Server and an…","author":{"@type":"Person","name":"Hitesh Manglani"},"mainEntityOfPage":"https://hiteshmanglani.com/blog/dynamics-365-for-operations-and-tls-1-2/","datePublished":"2018-01-16"}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="/" class="brand" aria-label="Hitesh Manglani home">
+          <span class="brand-mark">HM</span>
+          <span>Hitesh Manglani</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="/#about">About</a>
+          <a href="/#expertise">Expertise</a>
+          <a href="/blog/">Blog</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+        <a class="button button-small" href="/#contact">Request Resume</a>
+      </div>
+    </header>
+    <main>
+      <section class="journal-section">
+        <div class="journal-content">
+          <article class="blog-reader">
+            <a class="article-back" href="/blog/">← All articles</a>
+            <div class="reader-meta">
+              <time datetime="2018-01-16">16 January 2018</time>
+              <span class="tag">D365-Commerce</span>
+            </div>
+            <h2>Dynamics 365 for Operations and TLS 1.2</h2>
+            <div class="reader-body"><p>In my first Dynamics 365 for Operations project we had to implement an integration between the Azure hosted Dynamics 365 for Operations Retail Server and an on premise web api server (for more information on the overall Retail Topology do refer this link <a href="https://docs.microsoft.com/en-us/dynamics365/unified-operations/retail/dev-itpro/retail-modern-pos-architecture" target="_blank" rel="noopener noreferrer">MPOS Technical Architecture</a>).</p>
+<p>The integration worked fine in our Development environment but when promoted to UAT sandbox the integration broke with the following error</p>
+<p>“<em>Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.</em>”</p>
+<p>and initially we could not understand why, after some investigation we could find out the cause being that Dynamics 365 for Operations configuration enforced a TLS 1.2 protocol while the destination server supported only TLS 1.0 and 1.1.</p>
+<p>The following resources were very helpful to arrive at the conclusion</p>
+<p><a href="https://docs.microsoft.com/en-us/dynamics365/unified-operations/retail/retail-peripherals-overview" target="_blank" rel="noopener noreferrer">https://docs.microsoft.com/en-us/dynamics365/unified-operations/retail/retail-peripherals-overview</a></p>
+<p><a href="https://blogs.perficient.com/microsoft/2016/04/tsl-1-2-and-net-support/" target="_blank" rel="noopener noreferrer">https://blogs.perficient.com/microsoft/2016/04/tsl-1-2-and-net-support/</a></p>
+<p>Last but not the least, an excellent resource was the following link by John Louros.</p>
+<p><a href="https://www.johnlouros.com/blog/disabling-cryptographic-protocols-for-pci-compliance" target="_blank" rel="noopener noreferrer">https://www.johnlouros.com/blog/disabling-cryptographic-protocols-for-pci-compliance</a></p>
+<p>In this blog, John has provided a nifty console application which was extremely helpful in understanding what was going wrong in the integration, by trying all combinations of TLS protocols between the source and destination it lets you know which protocol is supported and which one is not.</p>
+<p> </p>
+<p>-Hitesh Manglani</p>
+<p> </p>
+<p> </p>
+</div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© 2026 Hitesh Manglani. All rights reserved.</p>
+        <a href="/">Home</a>
+      </div>
+    </footer>
+  </body>
+</html>

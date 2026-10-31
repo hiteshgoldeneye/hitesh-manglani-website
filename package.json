@@ -1,0 +1,23 @@
+{
+  "name": "hiteshmanglaniweb",
+  "version": "1.0.0",
+  "description": "A professional personal website template for Hitesh Manglani featuring a modern portfolio, blog content, and a clear contact call-to-action for requesting a resume.",
+  "main": "script.js",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hiteshgoldeneye/hitesh-manglani-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hiteshgoldeneye/hitesh-manglani-website/issues"
+  },
+  "homepage": "https://github.com/hiteshgoldeneye/hitesh-manglani-website#readme",
+  "devDependencies": {
+    "jsdom": "^30.1.3"
+  }
+}

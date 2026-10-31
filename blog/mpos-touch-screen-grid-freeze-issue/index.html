@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MPOS touch screen grid freeze issue | Hitesh Manglani</title>
+    <meta name="description" content="Note – This issue occurs only on few POS models so you may or may not face this issue. I do not have a list of models that have this issue, though I have…" />
+    <link rel="canonical" href="https://hiteshmanglani.com/blog/mpos-touch-screen-grid-freeze-issue/" />
+    <meta property="og:site_name" content="Hitesh Manglani" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="MPOS touch screen grid freeze issue | Hitesh Manglani" />
+    <meta property="og:description" content="Note – This issue occurs only on few POS models so you may or may not face this issue. I do not have a list of models that have this issue, though I have…" />
+    <meta property="og:url" content="https://hiteshmanglani.com/blog/mpos-touch-screen-grid-freeze-issue/" />
+    <meta property="og:image" content="https://hiteshmanglani.com/assets/blog/header.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="MPOS touch screen grid freeze issue | Hitesh Manglani" />
+    <meta name="twitter:description" content="Note – This issue occurs only on few POS models so you may or may not face this issue. I do not have a list of models that have this issue, though I have…" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"MPOS touch screen grid freeze issue","description":"Note – This issue occurs only on few POS models so you may or may not face this issue. I do not have a list of models that have this issue, though I have…","author":{"@type":"Person","name":"Hitesh Manglani"},"mainEntityOfPage":"https://hiteshmanglani.com/blog/mpos-touch-screen-grid-freeze-issue/","datePublished":"2018-05-01"}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="/" class="brand" aria-label="Hitesh Manglani home">
+          <span class="brand-mark">HM</span>
+          <span>Hitesh Manglani</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="/#about">About</a>
+          <a href="/#expertise">Expertise</a>
+          <a href="/blog/">Blog</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+        <a class="button button-small" href="/#contact">Request Resume</a>
+      </div>
+    </header>
+    <main>
+      <section class="journal-section">
+        <div class="journal-content">
+          <article class="blog-reader">
+            <a class="article-back" href="/blog/">← All articles</a>
+            <div class="reader-meta">
+              <time datetime="2018-05-01">01 May 2018</time>
+              <span class="tag">D365-Commerce</span>
+            </div>
+            <h2>MPOS touch screen grid freeze issue</h2>
+            <div class="reader-body"><p>Note – This issue occurs only on few POS models so you may or may not face this issue. I do not have a list of models that have this issue, though I have experienced this on a <strong>HP RP9 POS and on D365FO 7.1 Retail SDK</strong></p>
+<p>When trying to scroll through MPOS using touch gesture, in the views that have a grid (examples Tender Declaration, Show Journal, Product Search) you may experience the screen layout on the row you touch, getting out of alignment with the remaining rows and the screen freezes with no further response to touch gestures.</p>
+<p>A workaround is to use a mouse instead of touch for scrolling but obviously this can only be a temporary arrangement.</p>
+<p>When we contacted Microsoft support, we were given a one line code change fix  that consists in changing the WinJS script that is provided  in the Retail SDK. The script to be changed is the WinJS <strong>ui.js</strong> and update the equivalent minified file (<strong>ui.min.js</strong>). The exact change can be seen in this github link: <a href="https://github.com/winjs/winjs/commit/a48a12e33e08fccdea7879af877b2cc3a7cb8ec3" target="_blank" rel="noopener noreferrer">https://github.com/winjs/winjs/commit/a48a12e33e08fccdea7879af877b2cc3a7cb8ec3</a></p>
+<p> </p>
+<p>-Hitesh Manglani</p>
+<p> </p>
+<div></div>
+</div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© 2026 Hitesh Manglani. All rights reserved.</p>
+        <a href="/">Home</a>
+      </div>
+    </footer>
+  </body>
+</html>

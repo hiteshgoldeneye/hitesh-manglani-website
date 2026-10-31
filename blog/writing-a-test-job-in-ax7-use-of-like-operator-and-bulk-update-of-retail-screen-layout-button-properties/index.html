@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Writing a Test Job in AX7, Use of Like Operator and Bulk Update of Retail Screen Layout Button Properties | Hitesh Manglani</title>
+    <meta name="description" content="The following post will touch base on- 1. How we can execute a test job in AX7 which most of us already know in the good old AX 2012 as an AOT Node. 2. Use of…" />
+    <link rel="canonical" href="https://hiteshmanglani.com/blog/writing-a-test-job-in-ax7-use-of-like-operator-and-bulk-update-of-retail-screen-layout-button-properties/" />
+    <meta property="og:site_name" content="Hitesh Manglani" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Writing a Test Job in AX7, Use of Like Operator and Bulk Update of Retail Screen Layout Button Properties | Hitesh Manglani" />
+    <meta property="og:description" content="The following post will touch base on- 1. How we can execute a test job in AX7 which most of us already know in the good old AX 2012 as an AOT Node. 2. Use of…" />
+    <meta property="og:url" content="https://hiteshmanglani.com/blog/writing-a-test-job-in-ax7-use-of-like-operator-and-bulk-update-of-retail-screen-layout-button-properties/" />
+    <meta property="og:image" content="https://hiteshmanglani.com/assets/blog/header.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Writing a Test Job in AX7, Use of Like Operator and Bulk Update of Retail Screen Layout Button Properties | Hitesh Manglani" />
+    <meta name="twitter:description" content="The following post will touch base on- 1. How we can execute a test job in AX7 which most of us already know in the good old AX 2012 as an AOT Node. 2. Use of…" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Writing a Test Job in AX7, Use of Like Operator and Bulk Update of Retail Screen Layout Button Properties","description":"The following post will touch base on- 1. How we can execute a test job in AX7 which most of us already know in the good old AX 2012 as an AOT Node. 2. Use of…","author":{"@type":"Person","name":"Hitesh Manglani"},"mainEntityOfPage":"https://hiteshmanglani.com/blog/writing-a-test-job-in-ax7-use-of-like-operator-and-bulk-update-of-retail-screen-layout-button-properties/","datePublished":"2018-01-25"}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="/" class="brand" aria-label="Hitesh Manglani home">
+          <span class="brand-mark">HM</span>
+          <span>Hitesh Manglani</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="/#about">About</a>
+          <a href="/#expertise">Expertise</a>
+          <a href="/blog/">Blog</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+        <a class="button button-small" href="/#contact">Request Resume</a>
+      </div>
+    </header>
+    <main>
+      <section class="journal-section">
+        <div class="journal-content">
+          <article class="blog-reader">
+            <a class="article-back" href="/blog/">← All articles</a>
+            <div class="reader-meta">
+              <time datetime="2018-01-25">25 January 2018</time>
+              <span class="tag">D365-Commerce</span>
+            </div>
+            <h2>Writing a Test Job in AX7, Use of Like Operator and Bulk Update of Retail Screen Layout Button Properties</h2>
+            <div class="reader-body"><p>The following post will touch base on-</p>
+<div>
+<div>
+<div>
+<div>
+<p>1. How we can execute a test job in AX7 which most of us already know in the good old AX 2012 as an AOT Node.</p>
+</div>
+<div>
+<p>2. Use of ‘like’ operator-  AX uses asterik ‘*’ character instead of ‘%’ which we use in SQL.</p>
+</div>
+<div>
+<p>3. Changing Layouts of Retail Screens need not be tedious and time consuming by changing properties of each button manually.</p>
+</div>
+</div>
+<div></div>
+<div>A job in AX7 is simply a public class and it must have a main method that provides the runnable code. The main method was required in AX 2012 too but there was no need for the class to have access specifier as public.  Another difference is that the Jobs Node in AOT is deprecated.</div>
+<div></div>
+<div>So how do we write a test job in AX7? you can start by referring to this link for steps to create one</div>
+<div>
+<p><a href="https://blogs.msdn.microsoft.com/axsupport/2016/03/23/get-started-developing-in-ax-7/" target="_blank" rel="noopener noreferrer">https://blogs.msdn.microsoft.com/axsupport/2016/03/23/get-started-developing-in-ax-7/</a></p>
+</div>
+<div></div>
+<div>Consider that you want to bulk update the properties of buttons in the Retail Screen Layouts. The below piece of code can help to do the bulk update in a matter of few minutes,  &lt;Update&gt; please note this method of bulk update is ideal in some scenarios like preparation of demos  where you want to try out different values of colors for the buttons for example. However usual  approach for bulk update is DIXF <a href="https://docs.microsoft.com/nb-no/dynamics365/unified-operations/dev-itpro/lifecycle-services/ax-2012/migrate-data-dixf" target="_blank" rel="noopener noreferrer">https://docs.microsoft.com/nb-no/dynamics365/unified-operations/dev-itpro/lifecycle-services/ax-2012/migrate-data-dixf</a>&lt;/Update&gt;</div>
+<div></div>
+<div></div>
+<div>Note the use of like Operator (*) in this code.</div>
+</div>
+<p> </p>
+</div>
+<div></div>
+<div>
+<div>
+<div>
+<p>class TestJob</p>
+</div>
+<div>
+<p>{</p>
+</div>
+<div>
+<p>    public static void Main(Args args)</p>
+</div>
+<div>
+<p>    {</p>
+</div>
+<div>
+<p>        RetailButtonGridButtons retailButtonGridButtons;</p>
+</div>
+<div>
+<p>        update_recordset retailButtonGridButtons</p>
+</div>
+<div>
+<p>            setting BackColor=-65536,</p>
+</div>
+<div>
+<p>                    BackColor2=-65536,</p>
+</div>
+<div>
+<p>                    FontColor=0</p>
+</div>
+<div>
+<p>        where retailButtonGridButtons.buttonGridId like ‘*ABC*’;</p>
+</div>
+<div>
+<p>    }</p>
+</div>
+<div></div>
+<div>
+<p>}</p>
+</div>
+</div>
+<div></div>
+<div>
+<p>On running the above code we get following screen on successful completion</p>
+</div>
+<div></div>
+<p><a href="/assets/blog/archive-media/writing-a-test-job-in-ax7-use-of-like-operator-and-bulk-update-of-retail-screen-layout-button-properties-1.png"><img src="/assets/blog/archive-media/writing-a-test-job-in-ax7-use-of-like-operator-and-bulk-update-of-retail-screen-layout-button-properties-1.png" alt="" loading="lazy"></a></p>
+<div> So with this code you dont need to go to each Button Grid in the layout and change properties manually. So you can save your time and skip having to see the following screen multiple times</div>
+<div></div>
+<p><a href="/assets/blog/archive-media/writing-a-test-job-in-ax7-use-of-like-operator-and-bulk-update-of-retail-screen-layout-button-properties-2.png"><img src="/assets/blog/archive-media/writing-a-test-job-in-ax7-use-of-like-operator-and-bulk-update-of-retail-screen-layout-button-properties-2.png" alt="" loading="lazy"></a></p>
+<div></div>
+<div></div>
+<div> Note – This post was first published in <a href="http://hiteshgoldeneye-techtalk.blogspot.com/2016/01/writing-test-job-in-ax7-use-of-like.html" target="_blank" rel="noopener noreferrer">TechTalk</a></div>
+<div></div>
+<div>
+<p>-Hitesh Manglani</p>
+</div>
+<div></div>
+</div>
+</div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© 2026 Hitesh Manglani. All rights reserved.</p>
+        <a href="/">Home</a>
+      </div>
+    </footer>
+  </body>
+</html>

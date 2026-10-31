@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>[MPOS Technical Development]- Refactoring/Renaming of a  CRT Entity in Extensions | Hitesh Manglani</title>
+    <meta name="description" content="If you decide to refactor or rename a Commerce Runtime (CRT) entity (lets say OldEntityName to NewEntityName) inheriting from CommerceEntity, one issue that I…" />
+    <link rel="canonical" href="https://hiteshmanglani.com/blog/mpos-technical-development-refactoring-renaming-of-a-crt-entity-in-extensions/" />
+    <meta property="og:site_name" content="Hitesh Manglani" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="[MPOS Technical Development]- Refactoring/Renaming of a  CRT Entity in Extensions | Hitesh Manglani" />
+    <meta property="og:description" content="If you decide to refactor or rename a Commerce Runtime (CRT) entity (lets say OldEntityName to NewEntityName) inheriting from CommerceEntity, one issue that I…" />
+    <meta property="og:url" content="https://hiteshmanglani.com/blog/mpos-technical-development-refactoring-renaming-of-a-crt-entity-in-extensions/" />
+    <meta property="og:image" content="https://hiteshmanglani.com/assets/blog/header.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[MPOS Technical Development]- Refactoring/Renaming of a  CRT Entity in Extensions | Hitesh Manglani" />
+    <meta name="twitter:description" content="If you decide to refactor or rename a Commerce Runtime (CRT) entity (lets say OldEntityName to NewEntityName) inheriting from CommerceEntity, one issue that I…" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"[MPOS Technical Development]- Refactoring/Renaming of a  CRT Entity in Extensions","description":"If you decide to refactor or rename a Commerce Runtime (CRT) entity (lets say OldEntityName to NewEntityName) inheriting from CommerceEntity, one issue that I…","author":{"@type":"Person","name":"Hitesh Manglani"},"mainEntityOfPage":"https://hiteshmanglani.com/blog/mpos-technical-development-refactoring-renaming-of-a-crt-entity-in-extensions/","datePublished":"2018-09-10"}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="/" class="brand" aria-label="Hitesh Manglani home">
+          <span class="brand-mark">HM</span>
+          <span>Hitesh Manglani</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="/#about">About</a>
+          <a href="/#expertise">Expertise</a>
+          <a href="/blog/">Blog</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+        <a class="button button-small" href="/#contact">Request Resume</a>
+      </div>
+    </header>
+    <main>
+      <section class="journal-section">
+        <div class="journal-content">
+          <article class="blog-reader">
+            <a class="article-back" href="/blog/">← All articles</a>
+            <div class="reader-meta">
+              <time datetime="2018-09-10">10 September 2018</time>
+              <span class="tag">D365-Commerce</span>
+            </div>
+            <h2>[MPOS Technical Development]- Refactoring/Renaming of a  CRT Entity in Extensions</h2>
+            <div class="reader-body"><p>If you decide to refactor or rename a Commerce Runtime (CRT) entity (lets say OldEntityName to NewEntityName) inheriting from CommerceEntity, one issue that I have faced is in <strong>Retail Server extension assembly</strong> the build fails with errors due to the RetailProxy classes relying on the definition of your old entity name.</p>
+
+
+
+<p>Example of the error messages that you would see in this scenario are as follows-</p>
+
+
+
+<p>Could not load type OldEntityName from assembly… and the command ‘bin\CommerceProxyGenerator.exe’ ..</p>
+
+
+
+<figure><img src="/assets/blog/archive-media/mpos-technical-development-refactoring-renaming-of-a-crt-entity-in-extensions-1.png" alt="Retail Proxy Error" loading="lazy"></figure>
+
+
+
+<p>The solution to this issue is a little tricky one. You need to compile the CRT data dlls keeping the OldEntityName in the References folder.</p>
+
+
+
+<p>You need to then comment any reference to NewEntityName in the Retail Server Extension assembly. Then do a clean and a build of the solution.</p>
+
+
+
+<p>If this succeeds with no errors, you can now go ahead to uncomment all references to NewEntityName in the Retail Server Extension assembly.</p>
+
+
+
+<p>&lt;Update&gt;This article is based on 7.1 Retail SDK &lt;/Update&gt;</p>
+
+
+
+<p>-Hitesh Manglani</p>
+</div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© 2026 Hitesh Manglani. All rights reserved.</p>
+        <a href="/">Home</a>
+      </div>
+    </footer>
+  </body>
+</html>

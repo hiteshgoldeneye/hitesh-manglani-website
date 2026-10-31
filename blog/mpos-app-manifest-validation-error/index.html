@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MPOS Build Error – App manifest validation error: The app manifest must be valid as per schema | Hitesh Manglani</title>
+    <meta name="description" content="A Visual Studio and SDK troubleshooting post for MPOS build errors caused by missing deployment prerequisites." />
+    <link rel="canonical" href="https://hiteshmanglani.com/blog/mpos-app-manifest-validation-error/" />
+    <meta property="og:site_name" content="Hitesh Manglani" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="MPOS Build Error – App manifest validation error: The app manifest must be valid as per schema | Hitesh Manglani" />
+    <meta property="og:description" content="A Visual Studio and SDK troubleshooting post for MPOS build errors caused by missing deployment prerequisites." />
+    <meta property="og:url" content="https://hiteshmanglani.com/blog/mpos-app-manifest-validation-error/" />
+    <meta property="og:image" content="https://hiteshmanglani.com/assets/blog/header.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="MPOS Build Error – App manifest validation error: The app manifest must be valid as per schema | Hitesh Manglani" />
+    <meta name="twitter:description" content="A Visual Studio and SDK troubleshooting post for MPOS build errors caused by missing deployment prerequisites." />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"MPOS Build Error – App manifest validation error: The app manifest must be valid as per schema","description":"A Visual Studio and SDK troubleshooting post for MPOS build errors caused by missing deployment prerequisites.","author":{"@type":"Person","name":"Hitesh Manglani"},"mainEntityOfPage":"https://hiteshmanglani.com/blog/mpos-app-manifest-validation-error/","datePublished":"2019-02-01"}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="/" class="brand" aria-label="Hitesh Manglani home">
+          <span class="brand-mark">HM</span>
+          <span>Hitesh Manglani</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="/#about">About</a>
+          <a href="/#expertise">Expertise</a>
+          <a href="/blog/">Blog</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+        <a class="button button-small" href="/#contact">Request Resume</a>
+      </div>
+    </header>
+    <main>
+      <section class="journal-section">
+        <div class="journal-content">
+          <article class="blog-reader">
+            <a class="article-back" href="/blog/">← All articles</a>
+            <div class="reader-meta">
+              <time datetime="2019-02-01">01 February 2019</time>
+              <span class="tag">D365-Commerce</span>
+            </div>
+            <h2>MPOS Build Error – App manifest validation error: The app manifest must be valid as per schema</h2>
+            <div class="reader-body"><p>When trying to build the MPOS solution on my laptop, I got the below error.</p><figure><img src="/assets/blog/posts/2019-02-getimage-1.png" alt="MPOS app manifest validation error" loading="lazy"></figure><p>Error APPX0501 Validation error. error C00CE169: App manifest validation error: The app manifest must be valid as per schema: Line 10, Column 50, Reason: —————‘ violates pattern constraint of ‘(CN|L|O|OU|E|C|S|STREET|T|G|I|SN|DC|SERIALNUMBER|Description|PostalCode|POBox|Phone|X21Address|dnQualifier|(OID\.(0|[1-9][0-9]*)(\.(0|[1-9][0-9]*))+))=(([^,+=”&lt;&gt;#;])+|”.*”)(,((CN|L|O|OU|E|C|S|STREET|T|G|I|SN|DC|SERIALNUMBER|Description|PostalCode|POBox|Phone|X21Address|dnQualifier|(OID\.(0|[1-9][0-9]*)(\.(0|[1-9][0-9]*))+))=(([^,+=”&lt;&gt;#;])+|”.*”)))*’. The attribute ‘Publisher’ with value ————- failed to parse. Pos.App ” 1</p><p>App manifest validation error: The app manifest must be valid as per schema: Line 10, Column SO, Reason: ‘xxxx’ violates pattern constraint of ‘(CNILIOIOUIEICISISTREETITIGIIISNIDCI((CNILIOIOUIEICISISTREETITIGIIISNIDCISERIALNUM8ERIDescriptionPostalCodeP080xIPhoneIX21 . The attribute ‘Publisher’ with value ‘xxx’ failed to parse.</p><p>It took me a while to figure it out but this was happening because certain features in Visual Studio were not installed, the Retail SDK Handbook helped me to confirm which features were needed to be installed. After installing the highlighted features, I restarted the machine and the solution built successfully.</p><figure><img src="/assets/blog/posts/2019-02-visualstudiofeatures.jpg" alt="Required Visual Studio features" loading="lazy"></figure><p>Hope this helps, if someone meets the same error.</p><p>-Hitesh Manglani</p></div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© 2026 Hitesh Manglani. All rights reserved.</p>
+        <a href="/">Home</a>
+      </div>
+    </footer>
+  </body>
+</html>

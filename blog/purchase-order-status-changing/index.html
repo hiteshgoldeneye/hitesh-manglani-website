@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Purchase Order status changing automatically | Hitesh Manglani</title>
+    <meta name="description" content="An investigation into a purchase order status regression where confirmed orders unexpectedly changed to approved." />
+    <link rel="canonical" href="https://hiteshmanglani.com/blog/purchase-order-status-changing/" />
+    <meta property="og:site_name" content="Hitesh Manglani" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Purchase Order status changing automatically | Hitesh Manglani" />
+    <meta property="og:description" content="An investigation into a purchase order status regression where confirmed orders unexpectedly changed to approved." />
+    <meta property="og:url" content="https://hiteshmanglani.com/blog/purchase-order-status-changing/" />
+    <meta property="og:image" content="https://hiteshmanglani.com/assets/blog/header.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Purchase Order status changing automatically | Hitesh Manglani" />
+    <meta name="twitter:description" content="An investigation into a purchase order status regression where confirmed orders unexpectedly changed to approved." />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Purchase Order status changing automatically","description":"An investigation into a purchase order status regression where confirmed orders unexpectedly changed to approved.","author":{"@type":"Person","name":"Hitesh Manglani"},"mainEntityOfPage":"https://hiteshmanglani.com/blog/purchase-order-status-changing/","datePublished":"2020-02-21"}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="/" class="brand" aria-label="Hitesh Manglani home">
+          <span class="brand-mark">HM</span>
+          <span>Hitesh Manglani</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="/#about">About</a>
+          <a href="/#expertise">Expertise</a>
+          <a href="/blog/">Blog</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+        <a class="button button-small" href="/#contact">Request Resume</a>
+      </div>
+    </header>
+    <main>
+      <section class="journal-section">
+        <div class="journal-content">
+          <article class="blog-reader">
+            <a class="article-back" href="/blog/">← All articles</a>
+            <div class="reader-meta">
+              <time datetime="2020-02-21">21 February 2020</time>
+              <span class="tag">Operations</span>
+            </div>
+            <h2>Purchase Order status changing automatically</h2>
+            <div class="reader-body"><p>End users (Operations team and Purchase) started reporting that the Purchase Order status is changing automatically without them changing anything. The environment on which this issue was reported is Platform Update 32 – 10.0.08.</p><p>The purchase order status was changing from Confirmed to Approved and when Operations tried to GRN the order it caused an error –</p><p>“Purchase order is no longer confirmed. Posting of the order has been cancelled”.</p><figure><img src="/assets/blog/posts/2020-02-bloggrnissue.png" alt="Purchase order is no longer confirmed error" loading="lazy"></figure><p>I was trying to backtrack and check what was the code deployed in the last few packages that could have caused it, but found no code that could have caused this issue.</p><p>Finally I suspected that its a bug in the standard itself. I searched LCS and found the following issue-</p><p class="article-reference"><a href="https://fix.lcs.dynamics.com/Issue/Details?bugId=412804&amp;dbType=3&amp;qc=42d3ca380a11a4462acb824e890db0689172d2f8766d8724f3cc6f5231393a29" target="_blank" rel="noopener noreferrer">https://fix.lcs.dynamics.com/Issue/Details?bugId=412804 ↗</a></p><p>If you are facing the same issue, do visit the above link and subscribe to be notified for the fix</p><p>Hope this helps</p><p>-Hitesh Manglani</p></div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© 2026 Hitesh Manglani. All rights reserved.</p>
+        <a href="/">Home</a>
+      </div>
+    </footer>
+  </body>
+</html>
