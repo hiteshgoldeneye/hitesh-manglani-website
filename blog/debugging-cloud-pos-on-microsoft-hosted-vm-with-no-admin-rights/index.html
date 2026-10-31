@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debugging Cloud POS on Microsoft hosted VM with no admin rights | Hitesh Manglani</title>
+    <meta name="description" content="If you are on a MSDyn365FO 8.1 Microsoft hosted VM, you won’t have admin rights. In this case when you open the Cloud POS solution from the Retail SDK itself…" />
+    <link rel="canonical" href="https://hiteshmanglani.com/blog/debugging-cloud-pos-on-microsoft-hosted-vm-with-no-admin-rights/" />
+    <meta property="og:site_name" content="Hitesh Manglani" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Debugging Cloud POS on Microsoft hosted VM with no admin rights | Hitesh Manglani" />
+    <meta property="og:description" content="If you are on a MSDyn365FO 8.1 Microsoft hosted VM, you won’t have admin rights. In this case when you open the Cloud POS solution from the Retail SDK itself…" />
+    <meta property="og:url" content="https://hiteshmanglani.com/blog/debugging-cloud-pos-on-microsoft-hosted-vm-with-no-admin-rights/" />
+    <meta property="og:image" content="https://hiteshmanglani.com/assets/blog/header.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Debugging Cloud POS on Microsoft hosted VM with no admin rights | Hitesh Manglani" />
+    <meta name="twitter:description" content="If you are on a MSDyn365FO 8.1 Microsoft hosted VM, you won’t have admin rights. In this case when you open the Cloud POS solution from the Retail SDK itself…" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Debugging Cloud POS on Microsoft hosted VM with no admin rights","description":"If you are on a MSDyn365FO 8.1 Microsoft hosted VM, you won’t have admin rights. In this case when you open the Cloud POS solution from the Retail SDK itself…","author":{"@type":"Person","name":"Hitesh Manglani"},"mainEntityOfPage":"https://hiteshmanglani.com/blog/debugging-cloud-pos-on-microsoft-hosted-vm-with-no-admin-rights/","datePublished":"2018-11-14"}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="/" class="brand" aria-label="Hitesh Manglani home">
+          <span class="brand-mark">HM</span>
+          <span>Hitesh Manglani</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="/#about">About</a>
+          <a href="/#expertise">Expertise</a>
+          <a href="/blog/">Blog</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+        <a class="button button-small" href="/#contact">Request Resume</a>
+      </div>
+    </header>
+    <main>
+      <section class="journal-section">
+        <div class="journal-content">
+          <article class="blog-reader">
+            <a class="article-back" href="/blog/">← All articles</a>
+            <div class="reader-meta">
+              <time datetime="2018-11-14">14 November 2018</time>
+              <span class="tag">D365-Commerce</span>
+            </div>
+            <h2>Debugging Cloud POS on Microsoft hosted VM with no admin rights</h2>
+            <div class="reader-body"><p>If you are on a MSDyn365FO 8.1 Microsoft hosted VM, you won’t have admin rights. In this case when you open the Cloud POS solution from the Retail SDK itself you get an error.</p>
+
+
+
+<p>The error occurs as you do not have rights on IIS unless you run Visual Studio with Admin rights</p>
+
+
+
+<figure><img src="/assets/blog/archive-media/debugging-cloud-pos-on-microsoft-hosted-vm-with-no-admin-rights-1.jpg" alt="Cloud POS Solution Error" loading="lazy"></figure>
+
+
+
+<p>So to get around this issue, follow the article below to resolve the issue.</p>
+
+
+
+<p>https://docs.microsoft.com/en-gb/dynamics365/unified-operations/retail/dev-itpro/cloud-dev-box</p>
+
+
+
+<p><strong>Note</strong> –  For step 2 you will find the <strong>aspnet.config</strong> and <strong>redirection.config</strong> files in C:\Program Files\IIS Express\config\templates\PersonalWebServer</p>
+
+
+
+<p>Following the steps will make sure your Cloud POS runs on IISExpress instead of IIS and thus allowing you to to run Cloud POS and debug by attaching to iisexpress.exe.</p>
+
+
+
+<p>-Hitesh Manglani</p>
+
+
+
+<p>(Special thanks to my mentor Mugunthan Mani from Microsoft for this tip )</p>
+</div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© 2026 Hitesh Manglani. All rights reserved.</p>
+        <a href="/">Home</a>
+      </div>
+    </footer>
+  </body>
+</html>

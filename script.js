@@ -323,7 +323,7 @@ function mapLegacyArticleUrl(value) {
 
   const legacySlug = decodeURIComponent(url.pathname.replace(/^\/+|\/+$/g, ""));
   const localSlug = legacyPostRoutes.get(legacySlug);
-  return localSlug ? `#post/${localSlug}` : null;
+  return localSlug ? `/blog/${localSlug}/` : null;
 }
 
 function sanitizeLegacyHtml(html, mediaMap = {}) {
@@ -509,7 +509,7 @@ function renderPosts(filter = "all") {
             <h3>${escapeHtml(post.title)}</h3>
             <p>${escapeHtml(post.excerpt)}</p>
           </div>
-          <button class="article-link" type="button" data-post-slug="${escapeHtml(post.slug)}">Read article →</button>
+          <a class="article-link" href="/blog/${escapeHtml(post.slug)}/">Read article →</a>
         </article>
       `
     )
@@ -544,20 +544,12 @@ function syncPostFromUrl() {
   const post = match && blogPosts.find((entry) => entry.slug === decodeURIComponent(match[1]));
 
   if (post) {
-    showPost(post, false);
+    // Legacy hash links now live at real, crawlable URLs.
+    location.replace(`/blog/${post.slug}/`);
   } else {
     showPostList();
   }
 }
-
-blogGrid.addEventListener("click", (event) => {
-  const button = event.target.closest("[data-post-slug]");
-  const post = button && blogPosts.find((entry) => entry.slug === button.dataset.postSlug);
-
-  if (post) {
-    showPost(post);
-  }
-});
 
 blogReader.querySelector("[data-blog-back]").addEventListener("click", () => {
   history.pushState(null, "", "#blog");

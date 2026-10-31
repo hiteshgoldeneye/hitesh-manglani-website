@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A process serving application pool ‘AOSService’ suffered a fatal communication error with the Windows Process Activation Service. | Hitesh Manglani</title>
+    <meta name="description" content="When trying to host the Demo VM in the company’s data centre (host) we came across the below error- A process serving application pool ‘AOSService’ suffered a…" />
+    <link rel="canonical" href="https://hiteshmanglani.com/blog/a-process-serving-application-pool-aosservice-suffered-a-fatal-communication-error-with-the-windows-process-activation-service/" />
+    <meta property="og:site_name" content="Hitesh Manglani" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="A process serving application pool ‘AOSService’ suffered a fatal communication error with the Windows Process Activation Service. | Hitesh Manglani" />
+    <meta property="og:description" content="When trying to host the Demo VM in the company’s data centre (host) we came across the below error- A process serving application pool ‘AOSService’ suffered a…" />
+    <meta property="og:url" content="https://hiteshmanglani.com/blog/a-process-serving-application-pool-aosservice-suffered-a-fatal-communication-error-with-the-windows-process-activation-service/" />
+    <meta property="og:image" content="https://hiteshmanglani.com/assets/blog/header.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="A process serving application pool ‘AOSService’ suffered a fatal communication error with the Windows Process Activation Service. | Hitesh Manglani" />
+    <meta name="twitter:description" content="When trying to host the Demo VM in the company’s data centre (host) we came across the below error- A process serving application pool ‘AOSService’ suffered a…" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"A process serving application pool ‘AOSService’ suffered a fatal communication error with the Windows Process Activation Service.","description":"When trying to host the Demo VM in the company’s data centre (host) we came across the below error- A process serving application pool ‘AOSService’ suffered a…","author":{"@type":"Person","name":"Hitesh Manglani"},"mainEntityOfPage":"https://hiteshmanglani.com/blog/a-process-serving-application-pool-aosservice-suffered-a-fatal-communication-error-with-the-windows-process-activation-service/","datePublished":"2018-04-27"}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="/" class="brand" aria-label="Hitesh Manglani home">
+          <span class="brand-mark">HM</span>
+          <span>Hitesh Manglani</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="/#about">About</a>
+          <a href="/#expertise">Expertise</a>
+          <a href="/blog/">Blog</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+        <a class="button button-small" href="/#contact">Request Resume</a>
+      </div>
+    </header>
+    <main>
+      <section class="journal-section">
+        <div class="journal-content">
+          <article class="blog-reader">
+            <a class="article-back" href="/blog/">← All articles</a>
+            <div class="reader-meta">
+              <time datetime="2018-04-27">27 April 2018</time>
+              <span class="tag">Strategy</span>
+            </div>
+            <h2>A process serving application pool ‘AOSService’ suffered a fatal communication error with the Windows Process Activation Service.</h2>
+            <div class="reader-body"><p>When trying to host the Demo VM in the company’s data centre (host) we came across the below error-</p>
+<p><strong>A process serving application pool ‘AOSService’ suffered a fatal communication error with the Windows Process Activation Service. The process id was ‘3680’. The data field contains the error number.</strong></p>
+<p>One thing I attempted to do, based on some suggestions on the web, was to “Enable 32-Bit applications” in the app pool.</p>
+<p>This simply changed the error message to below-</p>
+<p><strong>Could not load file or assembly ‘Microsoft.Dynamics.AX.Security.SidGenerator’ or one of its dependencies. An attempt was made to load a program with an incorrect format. </strong></p>
+<p>I tried all the usual tools to try to troubleshoot the issue-Fiddler, Procmon, but no lead. Finally reached out to my mentor <a href="https://www.linkedin.com/in/brandonahmad/" target="_blank" rel="noopener noreferrer">Brandon Ahmad</a> . He was quick to point out to check the time zone on the Demo VM which may not be matching the host machine.</p>
+<p>The demo VM was set on US Time Zone and the host was set to Singapore Time Zone, once I changed the timezone in the demo VM to match the host, that fixed the issue!</p>
+<p> </p>
+<p>-Hitesh  Manglani</p>
+</div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© 2026 Hitesh Manglani. All rights reserved.</p>
+        <a href="/">Home</a>
+      </div>
+    </footer>
+  </body>
+</html>

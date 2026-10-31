@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom error messages in MPOS | Hitesh Manglani</title>
+    <meta name="description" content="This post is for describing how we can show custom error messages in MPOS. MPOS standard error handlers require that the strings to be shown as error messages…" />
+    <link rel="canonical" href="https://hiteshmanglani.com/blog/custom-error-messages-in-mpos/" />
+    <meta property="og:site_name" content="Hitesh Manglani" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Custom error messages in MPOS | Hitesh Manglani" />
+    <meta property="og:description" content="This post is for describing how we can show custom error messages in MPOS. MPOS standard error handlers require that the strings to be shown as error messages…" />
+    <meta property="og:url" content="https://hiteshmanglani.com/blog/custom-error-messages-in-mpos/" />
+    <meta property="og:image" content="https://hiteshmanglani.com/assets/blog/header.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Custom error messages in MPOS | Hitesh Manglani" />
+    <meta name="twitter:description" content="This post is for describing how we can show custom error messages in MPOS. MPOS standard error handlers require that the strings to be shown as error messages…" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Custom error messages in MPOS","description":"This post is for describing how we can show custom error messages in MPOS. MPOS standard error handlers require that the strings to be shown as error messages…","author":{"@type":"Person","name":"Hitesh Manglani"},"mainEntityOfPage":"https://hiteshmanglani.com/blog/custom-error-messages-in-mpos/","datePublished":"2018-08-23"}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="/" class="brand" aria-label="Hitesh Manglani home">
+          <span class="brand-mark">HM</span>
+          <span>Hitesh Manglani</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="/#about">About</a>
+          <a href="/#expertise">Expertise</a>
+          <a href="/blog/">Blog</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+        <a class="button button-small" href="/#contact">Request Resume</a>
+      </div>
+    </header>
+    <main>
+      <section class="journal-section">
+        <div class="journal-content">
+          <article class="blog-reader">
+            <a class="article-back" href="/blog/">← All articles</a>
+            <div class="reader-meta">
+              <time datetime="2018-08-23">23 August 2018</time>
+              <span class="tag">D365-Commerce</span>
+            </div>
+            <h2>Custom error messages in MPOS</h2>
+            <div class="reader-body"><p>This post is for describing how we can show custom error messages in MPOS.</p>
+<p>MPOS standard error handlers require that the strings to be shown as error messages are entered in the following format within the resources.json file (en-US).</p>
+<p><em>“string_55001” : “This is a custom error.”,</em></p>
+<p>Within MPOS we could use the following snippet to display any custom error messages</p>
+<p>let displayMessageActivity: Commerce.Activities.DisplayMessageActivity = new Commerce.Activities.DisplayMessageActivity({<br>
+title: ‘Custom Error’,<br>
+message: Commerce.ViewModelAdapter.getResourceString(“<em>string_55001</em>“)<br>
+});<br>
+displayMessageActivity.execute().done(() =&gt; {<br>
+// code to run on successful display of the error dialog<br>
+}).fail(() =&gt; {<br>
+// code to run on failure in displaying the error dialog<br>
+});</p>
+<p>If however the error condition is met in the Commerce Run Time (CRT) you need to show the error message in MPOS, you can leverage the CommerceRunTimeException</p>
+<p>throw new CommerceException(“string_55047”, “CUSTOM ERROR MESSAGE”);</p>
+<p> </p>
+<p>One possibility is that the error messages could be coming from a third party application. On a recent integration I received a list of predefined error codes with error messages from the application.I then defined an enum in the CRT which had the values as this status codes and names as the error messages</p>
+<p>e.g.</p>
+<p>INVALID_OPTION = 152</p>
+<p>ERROR_NEW_PASSWORD_CANNOT_BE_THE_SAME_AS_OLD_PASSWORD = 180</p>
+<p>I defined a corresponding Enum in the CRT</p>
+<p>public enum AppError<br>
+{</p>
+<p>INVALID_OPTION = 152</p>
+<p>ERROR_NEW_PASSWORD_CANNOT_BE_THE_SAME_AS_OLD_PASSWORD = 180</p>
+<p>…</p>
+<p>}</p>
+<p>After deserializing the response I checked the ReturnStatus code from the application and used an offset (50050) to throw the correct error message from the resources.json file</p>
+<p>if (Enum.IsDefined(typeof(AppError), res.ReturnStatus))<br>
+{<br>
+AppError err = (AppError)res.ReturnStatus;<br>
+throw new CommerceException(“string_” + (50050 + res.ReturnStatus) , err.ToString().Replace(“_”, ” “));<br>
+}</p>
+<p><strong>&lt;Update&gt;</strong></p>
+<p>I later discovered a simpler way by following the Retail SDK example</p>
+<p><strong>throw new CommerceException(“Microsoft_Dynamics_Commerce_30104”, “Custom error”)</strong><br>
+<strong>{</strong><br>
+<strong>LocalizedMessage = “Custom error message returned by the third party app”;</strong></p>
+<p><strong>};</strong></p>
+<p><strong>&lt;/Update&gt;</strong></p>
+<p>Hope this helps</p>
+<p>-Hitesh Manglani</p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+</div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© 2026 Hitesh Manglani. All rights reserved.</p>
+        <a href="/">Home</a>
+      </div>
+    </footer>
+  </body>
+</html>

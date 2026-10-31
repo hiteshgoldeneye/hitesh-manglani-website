@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PostEndTransactionTrigger – The trigger that may not trigger. | Hitesh Manglani</title>
+    <meta name="description" content="So here is an interesting tidbit from a recent incident in which I was supporting the customer on Dynamics 365 for Operations – Retail. Few transactions were…" />
+    <link rel="canonical" href="https://hiteshmanglani.com/blog/postendtransactiontrigger-the-trigger-that-may-not-trigger/" />
+    <meta property="og:site_name" content="Hitesh Manglani" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="PostEndTransactionTrigger – The trigger that may not trigger. | Hitesh Manglani" />
+    <meta property="og:description" content="So here is an interesting tidbit from a recent incident in which I was supporting the customer on Dynamics 365 for Operations – Retail. Few transactions were…" />
+    <meta property="og:url" content="https://hiteshmanglani.com/blog/postendtransactiontrigger-the-trigger-that-may-not-trigger/" />
+    <meta property="og:image" content="https://hiteshmanglani.com/assets/blog/header.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PostEndTransactionTrigger – The trigger that may not trigger. | Hitesh Manglani" />
+    <meta name="twitter:description" content="So here is an interesting tidbit from a recent incident in which I was supporting the customer on Dynamics 365 for Operations – Retail. Few transactions were…" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"PostEndTransactionTrigger – The trigger that may not trigger.","description":"So here is an interesting tidbit from a recent incident in which I was supporting the customer on Dynamics 365 for Operations – Retail. Few transactions were…","author":{"@type":"Person","name":"Hitesh Manglani"},"mainEntityOfPage":"https://hiteshmanglani.com/blog/postendtransactiontrigger-the-trigger-that-may-not-trigger/","datePublished":"2018-12-04"}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="/" class="brand" aria-label="Hitesh Manglani home">
+          <span class="brand-mark">HM</span>
+          <span>Hitesh Manglani</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="/#about">About</a>
+          <a href="/#expertise">Expertise</a>
+          <a href="/blog/">Blog</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+        <a class="button button-small" href="/#contact">Request Resume</a>
+      </div>
+    </header>
+    <main>
+      <section class="journal-section">
+        <div class="journal-content">
+          <article class="blog-reader">
+            <a class="article-back" href="/blog/">← All articles</a>
+            <div class="reader-meta">
+              <time datetime="2018-12-04">04 December 2018</time>
+              <span class="tag">Strategy</span>
+            </div>
+            <h2>PostEndTransactionTrigger – The trigger that may not trigger.</h2>
+            <div class="reader-body"><p>So here is an interesting tidbit from a recent incident in which I was supporting the customer on Dynamics 365 for Operations – Retail.</p>
+<p>Few transactions were suddenly reported as “Missing”  by the customer. The customer provided transaction details including CCTV grab along with Credit Card Slip. I started my investigation the server logs and found that the transaction id seemed be used across two transactions. This meant that the cart was not got getting cleared. In my customization I needed to access the cart information post the cart checkout and my cart clearing code was written in the PostEndTransactionTrigger.</p>
+<p>We also logged a support ticket with MS and over time understood from MS that the MPOS is being exited by the cashier without closing the Change Due Dialog, which resulted in the PostEndTransactionTrigger not executing.</p>
+<p><a href="/assets/blog/archive-media/postendtransactiontrigger-the-trigger-that-may-not-trigger-1.png"><img src="/assets/blog/archive-media/postendtransactiontrigger-the-trigger-that-may-not-trigger-1.png" alt="" loading="lazy"></a></p>
+<p>Long story short, if you are using this Trigger, make sure it contains non -critical code as it may not trigger if user exits MPOS without closing the above change due dialog. </p>
+<p>This article is based on 7.1 Retail SDK but should be applicable to later releases too unless a fix for this has been released.</p>
+<p>Hope this helps</p>
+<p>-Hitesh Manglani</p>
+<p> </p>
+<p> </p>
+<p> </p>
+
+
+<ul></ul>
+</div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© 2026 Hitesh Manglani. All rights reserved.</p>
+        <a href="/">Home</a>
+      </div>
+    </footer>
+  </body>
+</html>

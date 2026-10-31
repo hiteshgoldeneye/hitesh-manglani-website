@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Problem uninstalling MPOS or any other application | Hitesh Manglani</title>
+    <meta name="description" content="Sometimes I have experienced an error when trying to uninstall MPOS or any other program for that matter. Corrupted registry keys are one of the reasons for…" />
+    <link rel="canonical" href="https://hiteshmanglani.com/blog/problem-uninstalling-mpos-or-any-other-application/" />
+    <meta property="og:site_name" content="Hitesh Manglani" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Problem uninstalling MPOS or any other application | Hitesh Manglani" />
+    <meta property="og:description" content="Sometimes I have experienced an error when trying to uninstall MPOS or any other program for that matter. Corrupted registry keys are one of the reasons for…" />
+    <meta property="og:url" content="https://hiteshmanglani.com/blog/problem-uninstalling-mpos-or-any-other-application/" />
+    <meta property="og:image" content="https://hiteshmanglani.com/assets/blog/header.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Problem uninstalling MPOS or any other application | Hitesh Manglani" />
+    <meta name="twitter:description" content="Sometimes I have experienced an error when trying to uninstall MPOS or any other program for that matter. Corrupted registry keys are one of the reasons for…" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Problem uninstalling MPOS or any other application","description":"Sometimes I have experienced an error when trying to uninstall MPOS or any other program for that matter. Corrupted registry keys are one of the reasons for…","author":{"@type":"Person","name":"Hitesh Manglani"},"mainEntityOfPage":"https://hiteshmanglani.com/blog/problem-uninstalling-mpos-or-any-other-application/","datePublished":"2018-01-12"}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="/" class="brand" aria-label="Hitesh Manglani home">
+          <span class="brand-mark">HM</span>
+          <span>Hitesh Manglani</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="/#about">About</a>
+          <a href="/#expertise">Expertise</a>
+          <a href="/blog/">Blog</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+        <a class="button button-small" href="/#contact">Request Resume</a>
+      </div>
+    </header>
+    <main>
+      <section class="journal-section">
+        <div class="journal-content">
+          <article class="blog-reader">
+            <a class="article-back" href="/blog/">← All articles</a>
+            <div class="reader-meta">
+              <time datetime="2018-01-12">12 January 2018</time>
+              <span class="tag">D365-Commerce</span>
+            </div>
+            <h2>Problem uninstalling MPOS or any other application</h2>
+            <div class="reader-body"><p>Sometimes I have experienced an error when trying to uninstall MPOS or any other program for that matter.</p>
+<p><img src="/assets/blog/archive-media/problem-uninstalling-mpos-or-any-other-application-1.png" alt="MPOS uninstall" loading="lazy"></p>
+<p>Corrupted registry keys are one of the reasons for such an error.</p>
+<p>The following utility from Microsoft helps to cleanly uninstall MPOS  or any other program not uninstalling in such a situation.</p>
+<p><a href="https://support.microsoft.com/en-gb/help/17588/fix-problems-that-block-programs-from-being-installed-or-removed" target="_blank" rel="noopener noreferrer">https://support.microsoft.com/en-gb/help/17588/fix-problems-that-block-programs-from-being-installed-or-removed</a></p>
+<p>In addition you may also needed to follow these steps to make sure all MPOS packages are removed (especially when multiple user profiles are setup)</p>
+<ol>
+<li>Run the following powershell script as Admin user. (Note that you can run the Powershell command by loading it the command prompt by executing powershell command as shown below)</li>
+</ol>
+<p>Get-AppxPackage *pos* – allusers</p>
+<p><img src="/assets/blog/archive-media/problem-uninstalling-mpos-or-any-other-application-2.jpg" alt="Uninstall" loading="lazy"></p>
+<p>2.  Note the PackageUserInformation in the above results. It will list the users for which the package has been provisioned. The package can then be removed using the following script.</p>
+<p>Get-AppxPackage *pos*  | Remove-AppxPackage</p>
+<p>Note – You will need to execute the above command for each user by logging in as that particular user in command prompt. For instance lets consider that there are two users admin and user1. You will need to execute the powershell twice, once as admin and once as user1, by using “Run as a different user” option by right clicking the command prompt icon</p>
+<p><img src="/assets/blog/archive-media/problem-uninstalling-mpos-or-any-other-application-3.png" alt="Run as a different user menu" loading="lazy"></p>
+<p>Hope this helps</p>
+<p>-Hitesh Manglani</p>
+</div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© 2026 Hitesh Manglani. All rights reserved.</p>
+        <a href="/">Home</a>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A simple customization in MPOS (Blank Operation) with Dynamics 365 for Operations | Hitesh Manglani</title>
+    <meta name="description" content="A simple customization in MPOS" />
+    <link rel="canonical" href="https://hiteshmanglani.com/blog/a-simple-customization-in-mpos-blank-operation-with-dynamics-365-for-operations/" />
+    <meta property="og:site_name" content="Hitesh Manglani" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="A simple customization in MPOS (Blank Operation) with Dynamics 365 for Operations | Hitesh Manglani" />
+    <meta property="og:description" content="A simple customization in MPOS" />
+    <meta property="og:url" content="https://hiteshmanglani.com/blog/a-simple-customization-in-mpos-blank-operation-with-dynamics-365-for-operations/" />
+    <meta property="og:image" content="https://hiteshmanglani.com/assets/blog/header.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="A simple customization in MPOS (Blank Operation) with Dynamics 365 for Operations | Hitesh Manglani" />
+    <meta name="twitter:description" content="A simple customization in MPOS" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"A simple customization in MPOS (Blank Operation) with Dynamics 365 for Operations","description":"A simple customization in MPOS","author":{"@type":"Person","name":"Hitesh Manglani"},"mainEntityOfPage":"https://hiteshmanglani.com/blog/a-simple-customization-in-mpos-blank-operation-with-dynamics-365-for-operations/","datePublished":"2018-01-09"}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="/" class="brand" aria-label="Hitesh Manglani home">
+          <span class="brand-mark">HM</span>
+          <span>Hitesh Manglani</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="/#about">About</a>
+          <a href="/#expertise">Expertise</a>
+          <a href="/blog/">Blog</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+        <a class="button button-small" href="/#contact">Request Resume</a>
+      </div>
+    </header>
+    <main>
+      <section class="journal-section">
+        <div class="journal-content">
+          <article class="blog-reader">
+            <a class="article-back" href="/blog/">← All articles</a>
+            <div class="reader-meta">
+              <time datetime="2018-01-09">09 January 2018</time>
+              <span class="tag">D365-Commerce</span>
+            </div>
+            <h2>A simple customization in MPOS (Blank Operation) with Dynamics 365 for Operations</h2>
+            <div class="reader-body"><p>Note – This article is applicable upto Dynamics 365 for Operations- 7.1 i.e. not applicable to 7.2 and above</p>
+<p>Hi All,</p>
+<p> </p>
+<p>Blank Operation as you may already be aware enable you to extend Microsoft Dynamics Retail for POS by adding custom logic that can be triggered from the Retail POS Register buttons. The way to implement Blank Operations in MPOS  is different from Enterprise POS as MPOS is a modern app as compared to EPOS which is a windows forms based app.</p>
+<p>So lets explore a very simple customization i.e. we want to open a URL on triggering a button from MPOS.</p>
+<p>1. We would need to start with AX to add a button to the layout of MPOS. If you do not want to disturb the standard layouts its better to copy one of the existing layouts and then modify it using the designer. Please note the designer only opens in Internet Explorer so it will save you time by not trying to open it in other browsers e.g Chrome</p>
+<p>&lt;Update &gt; If you can trust third party extension, you can install ClickOnce  for Google Chrome extension to be able to open the designer in Chrome&lt;/Update&gt;</p>
+<div></div>
+<p><a href="/assets/blog/archive-media/a-simple-customization-in-mpos-blank-operation-with-dynamics-365-for-operations-1.png"><img src="/assets/blog/archive-media/a-simple-customization-in-mpos-blank-operation-with-dynamics-365-for-operations-1.png" alt="" loading="lazy"></a></p>
+<p><a href="/assets/blog/archive-media/a-simple-customization-in-mpos-blank-operation-with-dynamics-365-for-operations-2.png"><img src="/assets/blog/archive-media/a-simple-customization-in-mpos-blank-operation-with-dynamics-365-for-operations-2.png" alt="" loading="lazy"></a></p>
+<div></div>
+<div><a href="/assets/blog/archive-media/a-simple-customization-in-mpos-blank-operation-with-dynamics-365-for-operations-3.png"><img src="/assets/blog/archive-media/a-simple-customization-in-mpos-blank-operation-with-dynamics-365-for-operations-3.png" alt="" loading="lazy"></a></div>
+<div>
+<p>2. Next we need to add this layout to the Store where we intend to use it, in my case I have choosen Houston Store</p>
+<div><a href="/assets/blog/archive-media/a-simple-customization-in-mpos-blank-operation-with-dynamics-365-for-operations-4.png"><img src="/assets/blog/archive-media/a-simple-customization-in-mpos-blank-operation-with-dynamics-365-for-operations-4.png" alt="" loading="lazy"></a></div>
+<div></div>
+<div></div>
+<p>3. We need to modify the screen layout in the worker setup.</p>
+<div><a href="/assets/blog/archive-media/a-simple-customization-in-mpos-blank-operation-with-dynamics-365-for-operations-5.png"><img src="/assets/blog/archive-media/a-simple-customization-in-mpos-blank-operation-with-dynamics-365-for-operations-5.png" alt="" loading="lazy"></a></div>
+<p>Next run jobs 1060,1070, 1090 to push the worker,store configuration and the new screen layout respectively to Channel DB.</p>
+<p>Lets run MPOS SDK code from Visual Studio and check if the changes are reflected.</p>
+<div><a href="/assets/blog/archive-media/a-simple-customization-in-mpos-blank-operation-with-dynamics-365-for-operations-6.png"><img src="/assets/blog/archive-media/a-simple-customization-in-mpos-blank-operation-with-dynamics-365-for-operations-6.png" alt="" loading="lazy"></a></div>
+<p>As you can see we have a new button in MPOS which can be used to invoke custom logic. Currently on triggering the button gives us a message “The blank operation identifier is invalid”</p>
+</div>
+<div></div>
+<p>Now make the following modifications in the code.</p>
+<p>In POS.ViewModels-&gt;OperationsMap.ts add the following line of code to register a new handler for the custom blank operation</p>
+<p>Operations.BlankOperationHandler.registerBlankOperationHandler(“CustomOpenURL”, new Operations.OpenURLOperationHandler());</p>
+<p>Next we need to provide the definition for the handler, to do this headover to Pos.Core-&gt;Operations-&gt;Add a new typescript file say CustomBlankOperations.ts and paste following code.</p>
+<p>module Commerce.Operations {</p>
+<p>“use strict”;</p>
+<p>export class OpenURLOperationHandler extends OperationHandlerBase {</p>
+<p>/**</p>
+<p>* Executes the OpenURL operation.</p>
+<p>*</p>
+<p>* @param { IBlankOperationOptions } options The operation options.</p>
+<p>* @return {IAsyncResultIOperationResult&gt;} The async result containing the operation result, if any.</p>
+<p>*/</p>
+<p>public execute(options: IBlankOperationOptions): IAsyncResultIOperationResult&gt; {</p>
+<p>// sanitize options</p>
+<p>options = options || { operationId: undefined, operationData: undefined };</p>
+<p>var asyncQueue: AsyncQueue = new AsyncQueue();</p>
+<p>var asyncResult: VoidAsyncResult = new VoidAsyncResult(null);</p>
+<p>var url = String(options);</p>
+<p>asyncQueue.enqueue((): IAsyncResultICancelableResult&gt; =&gt; {</p>
+<p>Windows.System.Launcher.launchUriAsync(</p>
+<p>new Windows.Foundation.Uri(url)</p>
+<p>);</p>
+<p>return asyncResult;</p>
+<p>});</p>
+<p>return asyncQueue.run();</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+<p>On running the modified app you should be able to successfully run the blank operation and see the web page in this case http://www.bing.com opened in your browser.</p>
+<p>So hopefully this exercise will whet your appetite and for a deeper dive to more MPOS customizations I would suggest the following resources to try out in AX 7-</p>
+<p>1. <a href="http://blogs.msdn.com/b/axsa/archive/2015/02/17/extensibility-in-dynamics-ax-2012-r3-cu8-crt-retailserver-mpos-part-1.aspx" target="_blank" rel="noopener noreferrer">http://blogs.msdn.com/b/axsa/archive/2015/02/17/extensibility-in-dynamics-ax-2012-r3-cu8-crt-retailserver-mpos-part-1.aspx</a></p>
+<p>2. <a href="http://blogs.msdn.com/b/axsa/archive/2015/05/20/extensibility-in-dynamics-ax-2012-r3-cu8-crt-retailserver-mpos-part-2-new-data-entity.aspx" target="_blank" rel="noopener noreferrer">http://blogs.msdn.com/b/axsa/archive/2015/05/20/extensibility-in-dynamics-ax-2012-r3-cu8-crt-retailserver-mpos-part-2-new-data-entity.aspx</a></p>
+<p> </p>
+<p>hope this helps</p>
+<p>-Hitesh Manglani</p>
+<p>This post was first published at <a href="http://hiteshgoldeneye-techtalk.blogspot.sg/2015/12/a-simple-customization-in-mpos-blank.html" target="_blank" rel="noopener noreferrer">http://hiteshgoldeneye-techtalk.blogspot.sg/2015/12/a-simple-customization-in-mpos-blank.html</a></p>
+</div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© 2026 Hitesh Manglani. All rights reserved.</p>
+        <a href="/">Home</a>
+      </div>
+    </footer>
+  </body>
+</html>

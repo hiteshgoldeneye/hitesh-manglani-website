@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resolving ‘Operation Can’t Be Performed’ Error in Store Commerce | Hitesh Manglani</title>
+    <meta name="description" content="A deep-dive into a Store Commerce issue caused by the RetailFunctionalityProfile setting MANUALCHARGECALCULATION." />
+    <link rel="canonical" href="https://hiteshmanglani.com/blog/store-commerce-customer-deposit-error/" />
+    <meta property="og:site_name" content="Hitesh Manglani" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Resolving ‘Operation Can’t Be Performed’ Error in Store Commerce | Hitesh Manglani" />
+    <meta property="og:description" content="A deep-dive into a Store Commerce issue caused by the RetailFunctionalityProfile setting MANUALCHARGECALCULATION." />
+    <meta property="og:url" content="https://hiteshmanglani.com/blog/store-commerce-customer-deposit-error/" />
+    <meta property="og:image" content="https://hiteshmanglani.com/assets/blog/header.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Resolving ‘Operation Can’t Be Performed’ Error in Store Commerce | Hitesh Manglani" />
+    <meta name="twitter:description" content="A deep-dive into a Store Commerce issue caused by the RetailFunctionalityProfile setting MANUALCHARGECALCULATION." />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Resolving ‘Operation Can’t Be Performed’ Error in Store Commerce","description":"A deep-dive into a Store Commerce issue caused by the RetailFunctionalityProfile setting MANUALCHARGECALCULATION.","author":{"@type":"Person","name":"Hitesh Manglani"},"mainEntityOfPage":"https://hiteshmanglani.com/blog/store-commerce-customer-deposit-error/","datePublished":"2025-07-02"}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="/" class="brand" aria-label="Hitesh Manglani home">
+          <span class="brand-mark">HM</span>
+          <span>Hitesh Manglani</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="/#about">About</a>
+          <a href="/#expertise">Expertise</a>
+          <a href="/blog/">Blog</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+        <a class="button button-small" href="/#contact">Request Resume</a>
+      </div>
+    </header>
+    <main>
+      <section class="journal-section">
+        <div class="journal-content">
+          <article class="blog-reader">
+            <a class="article-back" href="/blog/">← All articles</a>
+            <div class="reader-meta">
+              <time datetime="2025-07-02">02 July 2025</time>
+              <span class="tag">Operations</span>
+            </div>
+            <h2>Resolving ‘Operation Can’t Be Performed’ Error in Store Commerce</h2>
+            <div class="reader-body"><p>Store Commerce Version – 9.53.25122.3 – On trying a simple customer deposit transaction, was getting this error. This was working fine a few days back on same environment, so we were not sure which config change has resulted in this error “The operation can’t be performed on a customer account deposit”.</p><figure><img src="/assets/blog/posts/2025-07-image-4.png" alt="Store Commerce customer account deposit error" loading="lazy"></figure><p>We knew this had to be a config issue but the question was which configuration and where. So tracing from the frontend code in Store Commerce and getting some support from Microsoft FastTrack team we got to know that there is some field MANUALCHARGECALCULATION that was involved in throwing this error.</p><p>I looked up the CRT code and traced this field to the RetailFunctionalityProfile.</p><p>To my surprise, this field was hidden in the Functionality Profile form and thats why it took us a long time to trace it. This flag was enabled and was causing this issue. We turned it off to resolve the error.</p><figure><img src="/assets/blog/posts/2025-07-image-scaled.png" alt="Retail Functionality Profile configuration" loading="lazy"></figure><p>Hope this helps.</p><p>-Hitesh Manglani</p></div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© 2026 Hitesh Manglani. All rights reserved.</p>
+        <a href="/">Home</a>
+      </div>
+    </footer>
+  </body>
+</html>
