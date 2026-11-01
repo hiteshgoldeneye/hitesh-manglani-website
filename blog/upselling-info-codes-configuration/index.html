@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles.css?v=3d135d33" />
   </head>
   <body>
     <header class="site-header">
@@ -38,18 +38,20 @@
       </div>
     </header>
     <main>
-      <section class="journal-section">
-        <div class="journal-content">
-          <article class="blog-reader">
-            <a class="article-back" href="/blog/">← All articles</a>
-            <div class="reader-meta">
-              <time datetime="2020-10-19">19 October 2020</time>
-              <span class="tag">D365-Commerce</span>
-            </div>
-            <h2>Upselling – Info codes configuration recap</h2>
-            <div class="reader-body"><p>Upselling is one of the common requirements in Retail POS. In this post I would like to recap how this can be achieved using configuration and no code in Dynamics 365 for Operations using info codes.</p><p>Info codes is quite an old feature and I thought it would be good to recap how we can use it to achieve “Upselling”.</p><p>Lets say we want the cashier to remember to try to upsell a product B on purchase of a certain product A (association rules)- example to prompt cashier to ask customer if he or she would like to buy batteries with purchase of camera.</p><p>The first step would be to create an infocode that will show a prompt to the cashier in the Retail POS. Infocodes can be created in Dynamics 365 in the following path- Retail and Commerce-&gt; Channel setup -&gt; Info codes</p><figure><img src="/assets/blog/posts/2020-10-info-code-setup.png" alt="Info Code setup" loading="lazy"></figure><p>The input type of the info code can be setup as subcode buttons.</p><p>The subcodes need to be setup as follows. Note the use of Trigger function and Trigger code in the setup.</p><figure><img src="/assets/blog/posts/2020-10-subcode-setup.png" alt="Info Code subcode setup" loading="lazy"></figure><p>The above setup means that on selecting Yes, the customer agrees to buy the product we are trying to upsell (batteries) and the product will be added to the transaction.</p><p>The next part of the setup involves linking this info code to the product the cashier sells in the first place to the customer (Camera). This can be done in the released products master under Commerce tab-&gt; Set up-&gt; Info codes.</p><figure><img src="/assets/blog/posts/2020-10-released-product-setup-infocode.png" alt="Released product Info Code setup" loading="lazy"></figure><p>With the above setup in backoffice and pushed to the POS (by running the 1030 job and 1040 job), the cashier will get a prompt as shown below</p><figure><img src="/assets/blog/posts/2020-10-infocode-pos-prompt.png" alt="Info Code prompt in POS" loading="lazy"></figure><p>On clicking Yes, the upsell will be done by adding the Batteries product to the transaction.</p><p>Regards</p><p>Hitesh Manglani</p></div>
-          </article>
+      <header class="article-hero">
+        <div class="article-hero-inner">
+          <a class="article-back" href="/blog/">← All articles</a>
+          <div class="reader-meta">
+            <span class="tag">D365-Commerce</span>
+            <time datetime="2020-10-19">19 October 2020</time>
+          </div>
+          <h1>Upselling – Info codes configuration recap</h1>
         </div>
+      </header>
+      <section class="journal-section static-page-bottom">
+        <article class="article-page">
+          <div class="reader-body"><p>Upselling is one of the common requirements in Retail POS. In this post I would like to recap how this can be achieved using configuration and no code in Dynamics 365 for Operations using info codes.</p><p>Info codes is quite an old feature and I thought it would be good to recap how we can use it to achieve “Upselling”.</p><p>Lets say we want the cashier to remember to try to upsell a product B on purchase of a certain product A (association rules)- example to prompt cashier to ask customer if he or she would like to buy batteries with purchase of camera.</p><p>The first step would be to create an infocode that will show a prompt to the cashier in the Retail POS. Infocodes can be created in Dynamics 365 in the following path- Retail and Commerce-&gt; Channel setup -&gt; Info codes</p><figure><img src="/assets/blog/posts/2020-10-info-code-setup.png" alt="Info Code setup" loading="lazy"></figure><p>The input type of the info code can be setup as subcode buttons.</p><p>The subcodes need to be setup as follows. Note the use of Trigger function and Trigger code in the setup.</p><figure><img src="/assets/blog/posts/2020-10-subcode-setup.png" alt="Info Code subcode setup" loading="lazy"></figure><p>The above setup means that on selecting Yes, the customer agrees to buy the product we are trying to upsell (batteries) and the product will be added to the transaction.</p><p>The next part of the setup involves linking this info code to the product the cashier sells in the first place to the customer (Camera). This can be done in the released products master under Commerce tab-&gt; Set up-&gt; Info codes.</p><figure><img src="/assets/blog/posts/2020-10-released-product-setup-infocode.png" alt="Released product Info Code setup" loading="lazy"></figure><p>With the above setup in backoffice and pushed to the POS (by running the 1030 job and 1040 job), the cashier will get a prompt as shown below</p><figure><img src="/assets/blog/posts/2020-10-infocode-pos-prompt.png" alt="Info Code prompt in POS" loading="lazy"></figure><p>On clicking Yes, the upsell will be done by adding the Batteries product to the transaction.</p><p>Regards</p><p>Hitesh Manglani</p></div>
+        </article>
       </section>
     </main>
     <footer class="site-footer">

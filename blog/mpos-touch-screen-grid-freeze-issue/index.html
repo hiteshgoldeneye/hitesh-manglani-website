@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles.css?v=3d135d33" />
   </head>
   <body>
     <header class="site-header">
@@ -38,16 +38,19 @@
       </div>
     </header>
     <main>
-      <section class="journal-section">
-        <div class="journal-content">
-          <article class="blog-reader">
-            <a class="article-back" href="/blog/">← All articles</a>
-            <div class="reader-meta">
-              <time datetime="2018-05-01">01 May 2018</time>
-              <span class="tag">D365-Commerce</span>
-            </div>
-            <h2>MPOS touch screen grid freeze issue</h2>
-            <div class="reader-body"><p>Note – This issue occurs only on few POS models so you may or may not face this issue. I do not have a list of models that have this issue, though I have experienced this on a <strong>HP RP9 POS and on D365FO 7.1 Retail SDK</strong></p>
+      <header class="article-hero">
+        <div class="article-hero-inner">
+          <a class="article-back" href="/blog/">← All articles</a>
+          <div class="reader-meta">
+            <span class="tag">D365-Commerce</span>
+            <time datetime="2018-05-01">01 May 2018</time>
+          </div>
+          <h1>MPOS touch screen grid freeze issue</h1>
+        </div>
+      </header>
+      <section class="journal-section static-page-bottom">
+        <article class="article-page">
+          <div class="reader-body"><p>Note – This issue occurs only on few POS models so you may or may not face this issue. I do not have a list of models that have this issue, though I have experienced this on a <strong>HP RP9 POS and on D365FO 7.1 Retail SDK</strong></p>
 <p>When trying to scroll through MPOS using touch gesture, in the views that have a grid (examples Tender Declaration, Show Journal, Product Search) you may experience the screen layout on the row you touch, getting out of alignment with the remaining rows and the screen freezes with no further response to touch gestures.</p>
 <p>A workaround is to use a mouse instead of touch for scrolling but obviously this can only be a temporary arrangement.</p>
 <p>When we contacted Microsoft support, we were given a one line code change fix  that consists in changing the WinJS script that is provided  in the Retail SDK. The script to be changed is the WinJS <strong>ui.js</strong> and update the equivalent minified file (<strong>ui.min.js</strong>). The exact change can be seen in this github link: <a href="https://github.com/winjs/winjs/commit/a48a12e33e08fccdea7879af877b2cc3a7cb8ec3" target="_blank" rel="noopener noreferrer">https://github.com/winjs/winjs/commit/a48a12e33e08fccdea7879af877b2cc3a7cb8ec3</a></p>
@@ -56,8 +59,7 @@
 <p> </p>
 <div></div>
 </div>
-          </article>
-        </div>
+        </article>
       </section>
     </main>
     <footer class="site-footer">

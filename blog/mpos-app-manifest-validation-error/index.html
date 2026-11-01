@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles.css?v=3d135d33" />
   </head>
   <body>
     <header class="site-header">
@@ -38,18 +38,20 @@
       </div>
     </header>
     <main>
-      <section class="journal-section">
-        <div class="journal-content">
-          <article class="blog-reader">
-            <a class="article-back" href="/blog/">← All articles</a>
-            <div class="reader-meta">
-              <time datetime="2019-02-01">01 February 2019</time>
-              <span class="tag">D365-Commerce</span>
-            </div>
-            <h2>MPOS Build Error – App manifest validation error: The app manifest must be valid as per schema</h2>
-            <div class="reader-body"><p>When trying to build the MPOS solution on my laptop, I got the below error.</p><figure><img src="/assets/blog/posts/2019-02-getimage-1.png" alt="MPOS app manifest validation error" loading="lazy"></figure><p>Error APPX0501 Validation error. error C00CE169: App manifest validation error: The app manifest must be valid as per schema: Line 10, Column 50, Reason: —————‘ violates pattern constraint of ‘(CN|L|O|OU|E|C|S|STREET|T|G|I|SN|DC|SERIALNUMBER|Description|PostalCode|POBox|Phone|X21Address|dnQualifier|(OID\.(0|[1-9][0-9]*)(\.(0|[1-9][0-9]*))+))=(([^,+=”&lt;&gt;#;])+|”.*”)(,((CN|L|O|OU|E|C|S|STREET|T|G|I|SN|DC|SERIALNUMBER|Description|PostalCode|POBox|Phone|X21Address|dnQualifier|(OID\.(0|[1-9][0-9]*)(\.(0|[1-9][0-9]*))+))=(([^,+=”&lt;&gt;#;])+|”.*”)))*’. The attribute ‘Publisher’ with value ————- failed to parse. Pos.App ” 1</p><p>App manifest validation error: The app manifest must be valid as per schema: Line 10, Column SO, Reason: ‘xxxx’ violates pattern constraint of ‘(CNILIOIOUIEICISISTREETITIGIIISNIDCI((CNILIOIOUIEICISISTREETITIGIIISNIDCISERIALNUM8ERIDescriptionPostalCodeP080xIPhoneIX21 . The attribute ‘Publisher’ with value ‘xxx’ failed to parse.</p><p>It took me a while to figure it out but this was happening because certain features in Visual Studio were not installed, the Retail SDK Handbook helped me to confirm which features were needed to be installed. After installing the highlighted features, I restarted the machine and the solution built successfully.</p><figure><img src="/assets/blog/posts/2019-02-visualstudiofeatures.jpg" alt="Required Visual Studio features" loading="lazy"></figure><p>Hope this helps, if someone meets the same error.</p><p>-Hitesh Manglani</p></div>
-          </article>
+      <header class="article-hero">
+        <div class="article-hero-inner">
+          <a class="article-back" href="/blog/">← All articles</a>
+          <div class="reader-meta">
+            <span class="tag">D365-Commerce</span>
+            <time datetime="2019-02-01">01 February 2019</time>
+          </div>
+          <h1>MPOS Build Error – App manifest validation error: The app manifest must be valid as per schema</h1>
         </div>
+      </header>
+      <section class="journal-section static-page-bottom">
+        <article class="article-page">
+          <div class="reader-body"><p>When trying to build the MPOS solution on my laptop, I got the below error.</p><figure><img src="/assets/blog/posts/2019-02-getimage-1.png" alt="MPOS app manifest validation error" loading="lazy"></figure><p>Error APPX0501 Validation error. error C00CE169: App manifest validation error: The app manifest must be valid as per schema: Line 10, Column 50, Reason: —————‘ violates pattern constraint of ‘(CN|L|O|OU|E|C|S|STREET|T|G|I|SN|DC|SERIALNUMBER|Description|PostalCode|POBox|Phone|X21Address|dnQualifier|(OID\.(0|[1-9][0-9]*)(\.(0|[1-9][0-9]*))+))=(([^,+=”&lt;&gt;#;])+|”.*”)(,((CN|L|O|OU|E|C|S|STREET|T|G|I|SN|DC|SERIALNUMBER|Description|PostalCode|POBox|Phone|X21Address|dnQualifier|(OID\.(0|[1-9][0-9]*)(\.(0|[1-9][0-9]*))+))=(([^,+=”&lt;&gt;#;])+|”.*”)))*’. The attribute ‘Publisher’ with value ————- failed to parse. Pos.App ” 1</p><p>App manifest validation error: The app manifest must be valid as per schema: Line 10, Column SO, Reason: ‘xxxx’ violates pattern constraint of ‘(CNILIOIOUIEICISISTREETITIGIIISNIDCI((CNILIOIOUIEICISISTREETITIGIIISNIDCISERIALNUM8ERIDescriptionPostalCodeP080xIPhoneIX21 . The attribute ‘Publisher’ with value ‘xxx’ failed to parse.</p><p>It took me a while to figure it out but this was happening because certain features in Visual Studio were not installed, the Retail SDK Handbook helped me to confirm which features were needed to be installed. After installing the highlighted features, I restarted the machine and the solution built successfully.</p><figure><img src="/assets/blog/posts/2019-02-visualstudiofeatures.jpg" alt="Required Visual Studio features" loading="lazy"></figure><p>Hope this helps, if someone meets the same error.</p><p>-Hitesh Manglani</p></div>
+        </article>
       </section>
     </main>
     <footer class="site-footer">

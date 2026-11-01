@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles.css?v=3d135d33" />
   </head>
   <body>
     <header class="site-header">
@@ -38,16 +38,19 @@
       </div>
     </header>
     <main>
-      <section class="journal-section">
-        <div class="journal-content">
-          <article class="blog-reader">
-            <a class="article-back" href="/blog/">← All articles</a>
-            <div class="reader-meta">
-              <time datetime="2018-03-16">16 March 2018</time>
-              <span class="tag">D365-Commerce</span>
-            </div>
-            <h2>MPOS randomly switching from online mode to offline</h2>
-            <div class="reader-body"><p>In my recent Dynamics 365 for Operations implementation on 7.1, we encountered an issue with MPOS switching to offline randomly . MPOS as we know switches to offline either when triggered manually or when the switch is seamless (automatically) when there is any issue in the communication between MPOS and D365 Retail Server, an example is a network interruption (for more information on the overall Retail Topology do refer this link <a href="https://docs.microsoft.com/en-us/dynamics365/unified-operations/retail/dev-itpro/retail-modern-pos-architecture" target="_blank" rel="noopener noreferrer">MPOS Technical Architecture</a>)</p>
+      <header class="article-hero">
+        <div class="article-hero-inner">
+          <a class="article-back" href="/blog/">← All articles</a>
+          <div class="reader-meta">
+            <span class="tag">D365-Commerce</span>
+            <time datetime="2018-03-16">16 March 2018</time>
+          </div>
+          <h1>MPOS randomly switching from online mode to offline</h1>
+        </div>
+      </header>
+      <section class="journal-section static-page-bottom">
+        <article class="article-page">
+          <div class="reader-body"><p>In my recent Dynamics 365 for Operations implementation on 7.1, we encountered an issue with MPOS switching to offline randomly . MPOS as we know switches to offline either when triggered manually or when the switch is seamless (automatically) when there is any issue in the communication between MPOS and D365 Retail Server, an example is a network interruption (for more information on the overall Retail Topology do refer this link <a href="https://docs.microsoft.com/en-us/dynamics365/unified-operations/retail/dev-itpro/retail-modern-pos-architecture" target="_blank" rel="noopener noreferrer">MPOS Technical Architecture</a>)</p>
 <p>In a usual scenario, when an interruption occurs in between a transaction, cashier would get an error message the Cart State has changed. The cashier would need to void the transaction and then start all over again and end with creating an offline transaction (Not the kind of experience you want when you have a queue of customers at the billing).  Another issue that coupled with this was that the MPOS logo would not switch from offline to online when the MPOS mode switched.</p>
 <p> </p>
 <p>Bottomline –</p>
@@ -63,8 +66,7 @@
 <p> </p>
 <p> </p>
 </div>
-          </article>
-        </div>
+        </article>
       </section>
     </main>
     <footer class="site-footer">

@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles.css?v=3d135d33" />
   </head>
   <body>
     <header class="site-header">
@@ -38,16 +38,19 @@
       </div>
     </header>
     <main>
-      <section class="journal-section">
-        <div class="journal-content">
-          <article class="blog-reader">
-            <a class="article-back" href="/blog/">← All articles</a>
-            <div class="reader-meta">
-              <time datetime="2018-12-04">04 December 2018</time>
-              <span class="tag">Strategy</span>
-            </div>
-            <h2>PostEndTransactionTrigger – The trigger that may not trigger.</h2>
-            <div class="reader-body"><p>So here is an interesting tidbit from a recent incident in which I was supporting the customer on Dynamics 365 for Operations – Retail.</p>
+      <header class="article-hero">
+        <div class="article-hero-inner">
+          <a class="article-back" href="/blog/">← All articles</a>
+          <div class="reader-meta">
+            <span class="tag">Strategy</span>
+            <time datetime="2018-12-04">04 December 2018</time>
+          </div>
+          <h1>PostEndTransactionTrigger – The trigger that may not trigger.</h1>
+        </div>
+      </header>
+      <section class="journal-section static-page-bottom">
+        <article class="article-page">
+          <div class="reader-body"><p>So here is an interesting tidbit from a recent incident in which I was supporting the customer on Dynamics 365 for Operations – Retail.</p>
 <p>Few transactions were suddenly reported as “Missing”  by the customer. The customer provided transaction details including CCTV grab along with Credit Card Slip. I started my investigation the server logs and found that the transaction id seemed be used across two transactions. This meant that the cart was not got getting cleared. In my customization I needed to access the cart information post the cart checkout and my cart clearing code was written in the PostEndTransactionTrigger.</p>
 <p>We also logged a support ticket with MS and over time understood from MS that the MPOS is being exited by the cashier without closing the Change Due Dialog, which resulted in the PostEndTransactionTrigger not executing.</p>
 <p><a href="/assets/blog/archive-media/postendtransactiontrigger-the-trigger-that-may-not-trigger-1.png"><img src="/assets/blog/archive-media/postendtransactiontrigger-the-trigger-that-may-not-trigger-1.png" alt="" loading="lazy"></a></p>
@@ -62,8 +65,7 @@
 
 <ul></ul>
 </div>
-          </article>
-        </div>
+        </article>
       </section>
     </main>
     <footer class="site-footer">

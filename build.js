@@ -7,6 +7,11 @@ const { JSDOM } = require("jsdom");
 
 const SITE = "https://hiteshmanglani.com";
 const root = __dirname;
+const cssVersion = require("crypto")
+  .createHash("md5")
+  .update(fs.readFileSync(path.join(root, "styles.css")))
+  .digest("hex")
+  .slice(0, 8);
 
 const escapeHtml = (value) =>
   String(value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
@@ -89,16 +94,12 @@ function page({ title, description, canonicalPath, type, body, extraHead = "" })
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles.css?v=${cssVersion}" />
   </head>
   <body>
     ${header}
     <main>
-      <section class="journal-section">
-        <div class="journal-content">
 ${body}
-        </div>
-      </section>
     </main>
     ${footer}
   </body>
@@ -120,15 +121,21 @@ function renderPost(post) {
     mainEntityOfPage: `${SITE}/blog/${post.slug}/`,
     ...(iso && { datePublished: iso }),
   };
-  const body = `          <article class="blog-reader">
-            <a class="article-back" href="/blog/">← All articles</a>
-            <div class="reader-meta">
-              <time${iso ? ` datetime="${iso}"` : ""}>${escapeHtml(post.date)}</time>
-              <span class="tag">${escapeHtml(post.tag)}</span>
-            </div>
-            <h2>${escapeHtml(post.title)}</h2>
-            <div class="reader-body">${toStaticLinks(post.bodyHtml)}</div>
-          </article>`;
+  const body = `      <header class="article-hero">
+        <div class="article-hero-inner">
+          <a class="article-back" href="/blog/">← All articles</a>
+          <div class="reader-meta">
+            <span class="tag">${escapeHtml(post.tag)}</span>
+            <time${iso ? ` datetime="${iso}"` : ""}>${escapeHtml(post.date)}</time>
+          </div>
+          <h1>${escapeHtml(post.title)}</h1>
+        </div>
+      </header>
+      <section class="journal-section static-page-bottom">
+        <article class="article-page">
+          <div class="reader-body">${toStaticLinks(post.bodyHtml)}</div>
+        </article>
+      </section>`;
 
   return page({
     title: `${post.title} | Hitesh Manglani`,
@@ -159,13 +166,19 @@ function renderIndex(posts) {
     description: "A blog on Dynamics 365 FinOps Commerce and associated tech, by Hitesh Manglani.",
     canonicalPath: "/blog/",
     type: "website",
-    body: `          <div class="journal-section-heading">
-            <p>From the archive</p>
-            <h2>Dynamics Journal</h2>
-          </div>
+    body: `      <div class="journal-masthead">
+        <div class="journal-masthead-panel">
+          <h2>DYNAMICS JOURNAL</h2>
+          <p>A blog on Dynamics 365 FinOps Commerce and associated tech</p>
+        </div>
+      </div>
+      <section class="journal-section static-page-bottom">
+        <div class="journal-content">
           <div class="card-grid blog-grid">
 ${items}
-          </div>`,
+          </div>
+        </div>
+      </section>`,
   });
 }
 
