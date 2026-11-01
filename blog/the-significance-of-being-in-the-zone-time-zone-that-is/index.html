@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles.css?v=3d135d33" />
   </head>
   <body>
     <header class="site-header">
@@ -38,16 +38,19 @@
       </div>
     </header>
     <main>
-      <section class="journal-section">
-        <div class="journal-content">
-          <article class="blog-reader">
-            <a class="article-back" href="/blog/">← All articles</a>
-            <div class="reader-meta">
-              <time datetime="2018-04-26">26 April 2018</time>
-              <span class="tag">Strategy</span>
-            </div>
-            <h2>The significance of being in the zone, time zone that is.</h2>
-            <div class="reader-body"><p>This is a post with respect to how combined date/time fields is handled in AX/Dynamics 365 for Operations (Dyn365FO). For more information on the type of date and time fields in AX visit the following link from docs.microsoft.com.</p>
+      <header class="article-hero">
+        <div class="article-hero-inner">
+          <a class="article-back" href="/blog/">← All articles</a>
+          <div class="reader-meta">
+            <span class="tag">Strategy</span>
+            <time datetime="2018-04-26">26 April 2018</time>
+          </div>
+          <h1>The significance of being in the zone, time zone that is.</h1>
+        </div>
+      </header>
+      <section class="journal-section static-page-bottom">
+        <article class="article-page">
+          <div class="reader-body"><p>This is a post with respect to how combined date/time fields is handled in AX/Dynamics 365 for Operations (Dyn365FO). For more information on the type of date and time fields in AX visit the following link from docs.microsoft.com.</p>
 <p><a href="https://docs.microsoft.com/en-us/dynamics365/unified-operations/fin-and-ops/organization-administration/date-time-zones" target="_blank" rel="noopener noreferrer">Date/time data and time zones</a></p>
 <p>Dyn365FO stores combined date/time fields internally in the SQL database based on UTC time zone. Whenever the date is to be displayed to the user, an offset based on the user preferred time zone is applied and then shown to the user.</p>
 <p>This preferred time zone is set in the following section in Dyn365FO.</p>
@@ -62,8 +65,7 @@
 <p> </p>
 <div></div>
 </div>
-          </article>
-        </div>
+        </article>
       </section>
     </main>
     <footer class="site-footer">

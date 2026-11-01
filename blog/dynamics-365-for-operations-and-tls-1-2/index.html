@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles.css?v=3d135d33" />
   </head>
   <body>
     <header class="site-header">
@@ -38,16 +38,19 @@
       </div>
     </header>
     <main>
-      <section class="journal-section">
-        <div class="journal-content">
-          <article class="blog-reader">
-            <a class="article-back" href="/blog/">← All articles</a>
-            <div class="reader-meta">
-              <time datetime="2018-01-16">16 January 2018</time>
-              <span class="tag">D365-Commerce</span>
-            </div>
-            <h2>Dynamics 365 for Operations and TLS 1.2</h2>
-            <div class="reader-body"><p>In my first Dynamics 365 for Operations project we had to implement an integration between the Azure hosted Dynamics 365 for Operations Retail Server and an on premise web api server (for more information on the overall Retail Topology do refer this link <a href="https://docs.microsoft.com/en-us/dynamics365/unified-operations/retail/dev-itpro/retail-modern-pos-architecture" target="_blank" rel="noopener noreferrer">MPOS Technical Architecture</a>).</p>
+      <header class="article-hero">
+        <div class="article-hero-inner">
+          <a class="article-back" href="/blog/">← All articles</a>
+          <div class="reader-meta">
+            <span class="tag">D365-Commerce</span>
+            <time datetime="2018-01-16">16 January 2018</time>
+          </div>
+          <h1>Dynamics 365 for Operations and TLS 1.2</h1>
+        </div>
+      </header>
+      <section class="journal-section static-page-bottom">
+        <article class="article-page">
+          <div class="reader-body"><p>In my first Dynamics 365 for Operations project we had to implement an integration between the Azure hosted Dynamics 365 for Operations Retail Server and an on premise web api server (for more information on the overall Retail Topology do refer this link <a href="https://docs.microsoft.com/en-us/dynamics365/unified-operations/retail/dev-itpro/retail-modern-pos-architecture" target="_blank" rel="noopener noreferrer">MPOS Technical Architecture</a>).</p>
 <p>The integration worked fine in our Development environment but when promoted to UAT sandbox the integration broke with the following error</p>
 <p>“<em>Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.</em>”</p>
 <p>and initially we could not understand why, after some investigation we could find out the cause being that Dynamics 365 for Operations configuration enforced a TLS 1.2 protocol while the destination server supported only TLS 1.0 and 1.1.</p>
@@ -62,8 +65,7 @@
 <p> </p>
 <p> </p>
 </div>
-          </article>
-        </div>
+        </article>
       </section>
     </main>
     <footer class="site-footer">

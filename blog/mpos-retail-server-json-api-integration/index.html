@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles.css?v=3d135d33" />
   </head>
   <body>
     <header class="site-header">
@@ -38,24 +38,26 @@
       </div>
     </header>
     <main>
-      <section class="journal-section">
-        <div class="journal-content">
-          <article class="blog-reader">
-            <a class="article-back" href="/blog/">← All articles</a>
-            <div class="reader-meta">
-              <time datetime="2018-06-24">24 June 2018</time>
-              <span class="tag">D365-Commerce</span>
-            </div>
-            <h2>MPOS, Retail Server – JSON API Integration</h2>
-            <div class="reader-body"><p>Recently I had to work on developing an integration between MPOS and a CRM application via Retail Server/CRT. The REST APIs provided where JSON based and I needed C# classes to deserialize the response.</p>
+      <header class="article-hero">
+        <div class="article-hero-inner">
+          <a class="article-back" href="/blog/">← All articles</a>
+          <div class="reader-meta">
+            <span class="tag">D365-Commerce</span>
+            <time datetime="2018-06-24">24 June 2018</time>
+          </div>
+          <h1>MPOS, Retail Server – JSON API Integration</h1>
+        </div>
+      </header>
+      <section class="journal-section static-page-bottom">
+        <article class="article-page">
+          <div class="reader-body"><p>Recently I had to work on developing an integration between MPOS and a CRM application via Retail Server/CRT. The REST APIs provided where JSON based and I needed C# classes to deserialize the response.</p>
 <p>My gut feel said that there should be a tool to do this and I need not create the required classes and properties manually.</p>
 <p>Sure enough after some web search, I found<a href="https://jsonutils.com/" target="_blank" rel="noopener noreferrer"> https://jsonutils.com/</a></p>
 <p>This is an awesome site where you can provide a sample JSON API response and get the C# classes that can be used to deserialize the JSON.</p>
 <p>Hope this helps  you save some time, just as it helped me.</p>
 <p>-Hitesh Manglani</p>
 </div>
-          </article>
-        </div>
+        </article>
       </section>
     </main>
     <footer class="site-footer">

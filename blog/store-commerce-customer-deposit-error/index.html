@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles.css?v=3d135d33" />
   </head>
   <body>
     <header class="site-header">
@@ -38,18 +38,20 @@
       </div>
     </header>
     <main>
-      <section class="journal-section">
-        <div class="journal-content">
-          <article class="blog-reader">
-            <a class="article-back" href="/blog/">← All articles</a>
-            <div class="reader-meta">
-              <time datetime="2025-07-02">02 July 2025</time>
-              <span class="tag">Operations</span>
-            </div>
-            <h2>Resolving ‘Operation Can’t Be Performed’ Error in Store Commerce</h2>
-            <div class="reader-body"><p>Store Commerce Version – 9.53.25122.3 – On trying a simple customer deposit transaction, was getting this error. This was working fine a few days back on same environment, so we were not sure which config change has resulted in this error “The operation can’t be performed on a customer account deposit”.</p><figure><img src="/assets/blog/posts/2025-07-image-4.png" alt="Store Commerce customer account deposit error" loading="lazy"></figure><p>We knew this had to be a config issue but the question was which configuration and where. So tracing from the frontend code in Store Commerce and getting some support from Microsoft FastTrack team we got to know that there is some field MANUALCHARGECALCULATION that was involved in throwing this error.</p><p>I looked up the CRT code and traced this field to the RetailFunctionalityProfile.</p><p>To my surprise, this field was hidden in the Functionality Profile form and thats why it took us a long time to trace it. This flag was enabled and was causing this issue. We turned it off to resolve the error.</p><figure><img src="/assets/blog/posts/2025-07-image-scaled.png" alt="Retail Functionality Profile configuration" loading="lazy"></figure><p>Hope this helps.</p><p>-Hitesh Manglani</p></div>
-          </article>
+      <header class="article-hero">
+        <div class="article-hero-inner">
+          <a class="article-back" href="/blog/">← All articles</a>
+          <div class="reader-meta">
+            <span class="tag">Operations</span>
+            <time datetime="2025-07-02">02 July 2025</time>
+          </div>
+          <h1>Resolving ‘Operation Can’t Be Performed’ Error in Store Commerce</h1>
         </div>
+      </header>
+      <section class="journal-section static-page-bottom">
+        <article class="article-page">
+          <div class="reader-body"><p>Store Commerce Version – 9.53.25122.3 – On trying a simple customer deposit transaction, was getting this error. This was working fine a few days back on same environment, so we were not sure which config change has resulted in this error “The operation can’t be performed on a customer account deposit”.</p><figure><img src="/assets/blog/posts/2025-07-image-4.png" alt="Store Commerce customer account deposit error" loading="lazy"></figure><p>We knew this had to be a config issue but the question was which configuration and where. So tracing from the frontend code in Store Commerce and getting some support from Microsoft FastTrack team we got to know that there is some field MANUALCHARGECALCULATION that was involved in throwing this error.</p><p>I looked up the CRT code and traced this field to the RetailFunctionalityProfile.</p><p>To my surprise, this field was hidden in the Functionality Profile form and thats why it took us a long time to trace it. This flag was enabled and was causing this issue. We turned it off to resolve the error.</p><figure><img src="/assets/blog/posts/2025-07-image-scaled.png" alt="Retail Functionality Profile configuration" loading="lazy"></figure><p>Hope this helps.</p><p>-Hitesh Manglani</p></div>
+        </article>
       </section>
     </main>
     <footer class="site-footer">

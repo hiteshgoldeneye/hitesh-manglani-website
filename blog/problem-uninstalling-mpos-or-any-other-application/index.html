@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles.css?v=3d135d33" />
   </head>
   <body>
     <header class="site-header">
@@ -38,16 +38,19 @@
       </div>
     </header>
     <main>
-      <section class="journal-section">
-        <div class="journal-content">
-          <article class="blog-reader">
-            <a class="article-back" href="/blog/">← All articles</a>
-            <div class="reader-meta">
-              <time datetime="2018-01-12">12 January 2018</time>
-              <span class="tag">D365-Commerce</span>
-            </div>
-            <h2>Problem uninstalling MPOS or any other application</h2>
-            <div class="reader-body"><p>Sometimes I have experienced an error when trying to uninstall MPOS or any other program for that matter.</p>
+      <header class="article-hero">
+        <div class="article-hero-inner">
+          <a class="article-back" href="/blog/">← All articles</a>
+          <div class="reader-meta">
+            <span class="tag">D365-Commerce</span>
+            <time datetime="2018-01-12">12 January 2018</time>
+          </div>
+          <h1>Problem uninstalling MPOS or any other application</h1>
+        </div>
+      </header>
+      <section class="journal-section static-page-bottom">
+        <article class="article-page">
+          <div class="reader-body"><p>Sometimes I have experienced an error when trying to uninstall MPOS or any other program for that matter.</p>
 <p><img src="/assets/blog/archive-media/problem-uninstalling-mpos-or-any-other-application-1.png" alt="MPOS uninstall" loading="lazy"></p>
 <p>Corrupted registry keys are one of the reasons for such an error.</p>
 <p>The following utility from Microsoft helps to cleanly uninstall MPOS  or any other program not uninstalling in such a situation.</p>
@@ -65,8 +68,7 @@
 <p>Hope this helps</p>
 <p>-Hitesh Manglani</p>
 </div>
-          </article>
-        </div>
+        </article>
       </section>
     </main>
     <footer class="site-footer">

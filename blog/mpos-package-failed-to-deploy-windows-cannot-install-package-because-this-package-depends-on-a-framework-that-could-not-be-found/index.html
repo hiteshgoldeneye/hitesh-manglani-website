@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles.css?v=3d135d33" />
   </head>
   <body>
     <header class="site-header">
@@ -38,16 +38,19 @@
       </div>
     </header>
     <main>
-      <section class="journal-section">
-        <div class="journal-content">
-          <article class="blog-reader">
-            <a class="article-back" href="/blog/">← All articles</a>
-            <div class="reader-meta">
-              <time datetime="2018-04-17">17 April 2018</time>
-              <span class="tag">Strategy</span>
-            </div>
-            <h2>MPOS Package failed to deploy – Windows cannot install package because this package depends on a framework that could not be found</h2>
-            <div class="reader-body"><p>So recently I successfully build my Retail SDK and uploaded the installer to one of my D365FO environment, but when trying to install the package faced the below issue.</p>
+      <header class="article-hero">
+        <div class="article-hero-inner">
+          <a class="article-back" href="/blog/">← All articles</a>
+          <div class="reader-meta">
+            <span class="tag">Strategy</span>
+            <time datetime="2018-04-17">17 April 2018</time>
+          </div>
+          <h1>MPOS Package failed to deploy – Windows cannot install package because this package depends on a framework that could not be found</h1>
+        </div>
+      </header>
+      <section class="journal-section static-page-bottom">
+        <article class="article-page">
+          <div class="reader-body"><p>So recently I successfully build my Retail SDK and uploaded the installer to one of my D365FO environment, but when trying to install the package faced the below issue.</p>
 <p><strong>“Windows cannot install package because this package depends on a framework that could not be found”</strong></p>
 <p>Here is an extract of the MPOS installation error logs.</p>
 <p>System.IO.IOException: Deployment failed with HRESULT: 0x80073CF3, Package failed updates, dependency or conflict validation.</p>
@@ -62,8 +65,7 @@
 <p>-Hitesh Manglani</p>
 <div></div>
 </div>
-          </article>
-        </div>
+        </article>
       </section>
     </main>
     <footer class="site-footer">

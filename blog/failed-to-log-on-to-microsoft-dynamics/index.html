@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles.css?v=3d135d33" />
   </head>
   <body>
     <header class="site-header">
@@ -38,16 +38,19 @@
       </div>
     </header>
     <main>
-      <section class="journal-section">
-        <div class="journal-content">
-          <article class="blog-reader">
-            <a class="article-back" href="/blog/">← All articles</a>
-            <div class="reader-meta">
-              <time datetime="2018-01-18">18 January 2018</time>
-              <span class="tag">D365-Commerce</span>
-            </div>
-            <h2>Failed to log on to Microsoft Dynamics</h2>
-            <div class="reader-body"><p>Note -If  you have a Dynamics 365 for Operations VM then follow below link</p>
+      <header class="article-hero">
+        <div class="article-hero-inner">
+          <a class="article-back" href="/blog/">← All articles</a>
+          <div class="reader-meta">
+            <span class="tag">D365-Commerce</span>
+            <time datetime="2018-01-18">18 January 2018</time>
+          </div>
+          <h1>Failed to log on to Microsoft Dynamics</h1>
+        </div>
+      </header>
+      <section class="journal-section static-page-bottom">
+        <article class="article-page">
+          <div class="reader-body"><p>Note -If  you have a Dynamics 365 for Operations VM then follow below link</p>
 <p>(“Provisioning the administrator” user section)</p>
 <p>to set up and be able to login – <a href="https://docs.microsoft.com/en-us/dynamics365/unified-operations/dev-itpro/dev-tools/access-instances" target="_blank" rel="noopener noreferrer">https://docs.microsoft.com/en-us/dynamics365/unified-operations/dev-itpro/dev-tools/access-instances</a></p>
 <p>If you are using AX 2012 please continue reading-</p>
@@ -66,8 +69,7 @@
 <p> </p>
 <p>-Hitesh Manglani</p>
 </div>
-          </article>
-        </div>
+        </article>
       </section>
     </main>
     <footer class="site-footer">
