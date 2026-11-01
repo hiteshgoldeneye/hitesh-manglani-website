@@ -34,13 +34,15 @@ async function loadPosts() {
   new vm.Script(fs.readFileSync(path.join(root, "script.js"), "utf8")).runInContext(context);
   await new Promise((resolve) => setTimeout(resolve, 100));
 
-  return vm.runInContext(
+  const legacyRoutes = vm.runInContext("Array.from(legacyPostRoutes)", context);
+  const posts = vm.runInContext(
     `blogPosts.map((post) => ({
       slug: post.slug, title: post.title, tag: post.tag, date: post.date, excerpt: post.excerpt,
       bodyHtml: post.content.map((block) => renderContentBlock(block, post)).join(""),
     }))`,
     context
   );
+  return { posts, legacyRoutes };
 }
 
 // Make the SPA's hash links and relative asset paths work from any URL depth.
@@ -194,8 +196,50 @@ function renderSitemap(posts) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries}\n</urlset>\n`;
 }
 
+const REDIRECT_MARKER = "<!-- generated-redirect -->";
+
+// Old WordPress URLs (/<legacy-slug>/) forward to the new article pages.
+function writeLegacyRedirects(posts, legacyRoutes) {
+  const reserved = new Set(["assets", "blog", "node_modules", ".git"]);
+  for (const entry of fs.readdirSync(root, { withFileTypes: true })) {
+    const file = path.join(root, entry.name, "index.html");
+    if (entry.isDirectory() && fs.existsSync(file) && fs.readFileSync(file, "utf8").includes(REDIRECT_MARKER)) {
+      fs.rmSync(path.join(root, entry.name), { recursive: true, force: true });
+    }
+  }
+
+  const known = new Set(posts.map((post) => post.slug));
+  let count = 0;
+  for (const [legacySlug, slug] of legacyRoutes) {
+    if (!known.has(slug) || reserved.has(legacySlug) || !/^[a-z0-9-]+$/.test(legacySlug)) continue;
+    const target = `${SITE}/blog/${slug}/`;
+    const dir = path.join(root, legacySlug);
+    if (fs.existsSync(dir)) continue;
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(
+      path.join(dir, "index.html"),
+      `<!DOCTYPE html>
+${REDIRECT_MARKER}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecting…</title>
+    <link rel="canonical" href="${target}" />
+    <meta http-equiv="refresh" content="0; url=/blog/${slug}/" />
+    <meta name="robots" content="noindex" />
+    <script>location.replace("/blog/${slug}/");</script>
+  </head>
+  <body><p>This article has moved to <a href="/blog/${slug}/">${target}</a>.</p></body>
+</html>
+`
+    );
+    count += 1;
+  }
+  return count;
+}
+
 async function main() {
-  const posts = await loadPosts();
+  const { posts, legacyRoutes } = await loadPosts();
   fs.rmSync(path.join(root, "blog"), { recursive: true, force: true });
 
   for (const post of posts) {
@@ -206,7 +250,8 @@ async function main() {
   fs.writeFileSync(path.join(root, "blog", "index.html"), renderIndex(posts));
   fs.writeFileSync(path.join(root, "sitemap.xml"), renderSitemap(posts));
   fs.writeFileSync(path.join(root, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
-  console.log(`Generated ${posts.length} posts, blog index, sitemap.xml and robots.txt`);
+  const redirects = writeLegacyRedirects(posts, legacyRoutes);
+  console.log(`Generated ${posts.length} posts, ${redirects} legacy redirects, blog index, sitemap.xml and robots.txt`);
 }
 
 main().catch((error) => {
